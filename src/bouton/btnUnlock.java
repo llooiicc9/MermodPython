@@ -14,7 +14,7 @@ public class btnUnlock extends btnBase
 	
 	public btnUnlock() 
 	{
-		super("D:/User/Mes documents/HES/Dropbox/HES/2eme/POO/unlocked.png");
+		super("images/unlocked.png");
 		
 	}
 	

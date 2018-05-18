@@ -14,7 +14,7 @@ public class btnPizza extends btnBase
 	
 	public btnPizza() 
 	{
-		super("D:/User/Mes documents/HES/Dropbox/HES/2eme/POO/Pizza.png");
+		super("images/Pizza.png");
 	}
 	
 	

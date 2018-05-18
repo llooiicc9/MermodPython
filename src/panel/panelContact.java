@@ -38,7 +38,7 @@ public class panelContact extends JPanel
     {
     		try 
     	    {
-    	      Image img = ImageIO.read(new File("background.jpg"));
+    	      Image img = ImageIO.read(new File("images/background.jpg"));
     	      //g.drawImage(img, 0, 0, this);
     	      //Pour une image de fond
     	     g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);

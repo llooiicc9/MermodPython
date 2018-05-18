@@ -14,7 +14,7 @@ public class btnImage extends btnBase
 	
 	public btnImage() 
 	{
-		super("D:/User/Mes documents/HES/Dropbox/HES/2eme/POO/Images.png");
+		super("images/Images.png");
 	}
 	
 	

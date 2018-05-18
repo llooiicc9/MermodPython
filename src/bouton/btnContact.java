@@ -13,7 +13,7 @@ public class btnContact extends btnBase
 {
 	public btnContact() 
 	{
-		super("D:/User/Mes documents/HES/Dropbox/HES/2eme/POO/Contacts.png");
+		super("images/Contacts.png");
 	}
 
 	

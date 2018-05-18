@@ -40,7 +40,7 @@ public class panelMenuMilieu extends JPanel
 	public btnImage btnImage = new btnImage();
 	public btnPizza btnContacts2 = new btnPizza();
 	
-	public btnBase home = new btnBase("D:/User/Mes documents/HES/Dropbox/HES/2eme/POO/Home.png");
+	public btnBase home = new btnBase("images/Home.png");
 	
 	public panelMenuMilieu() 
 	{
@@ -114,7 +114,7 @@ public class panelMenuMilieu extends JPanel
     {
 		try 
 	    {
-	      Image img = ImageIO.read(new File("background.jpg"));
+	      Image img = ImageIO.read(new File("images/background.jpg"));
 	      //g.drawImage(img, 0, 0, this);
 	      //Pour une image de fond
 	     g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
