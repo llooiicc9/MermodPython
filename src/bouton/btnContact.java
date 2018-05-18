@@ -14,7 +14,7 @@ public class btnContact extends btnBase
 	public btnContact() 
 	{
 		super("images/Contacts.png");
-		//Tu pues
+		
 	}
 
 	
