@@ -12,7 +12,7 @@ import fenetre.MonDialog;
 public class btnContact extends btnBase 
 {
 	public btnContact() 
-	{
+	{//test
 		super("images/Contacts.png");
 	}
 
