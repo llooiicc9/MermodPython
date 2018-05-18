@@ -38,20 +38,18 @@ public class panelUnlockMilieu extends JPanel
 	private Timer timerDate = new Timer(0, new CurrentDate());
 	
 	public panelUnlockMilieu() 
-	{
-		// Heure		
-						//Date maDate = new Date(); 
+	{	
+				
 		bas.setOpaque(false);
 		haut.setOpaque(false);
 	
-						//lblHeure.setText(maDate.getHours()+" : "+maDate.getMinutes());
+						
 		
 		
 		timerDate.start();
-		add(date, BorderLayout.SOUTH);
 		date.setHorizontalAlignment(JLabel.CENTER);
 		date.setForeground(Color.WHITE);
-		date.setFont(new Font("Montserrat", Font.BOLD, 30));
+		date.setFont(new Font("Arial", Font.BOLD, 60));
 		
 		//Boutton
 		setLayout(new BorderLayout());
