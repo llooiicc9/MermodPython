@@ -15,6 +15,7 @@ import bouton.btnUnlock;
 import panel.panelBas;
 import panel.panelContact;
 import panel.panelHaut;
+import panel.panelImage;
 import panel.panelMenuMilieu;
 import panel.panelUnlockMilieu;
 
@@ -23,13 +24,14 @@ public class MaFrame extends JFrame
 {
 	CardLayout cl = new CardLayout();
 	JPanel content = new JPanel();
-	String[] listContent = {"Lock", "Menu", "Contact"};
+	String[] listContent = {"Lock", "Menu", "Contact", "Image"};
 	
 	private panelHaut nord = new panelHaut();
 	private panelBas sud = new panelBas();
 	private panelUnlockMilieu milieu = new panelUnlockMilieu();
 	private panelMenuMilieu Menu = new panelMenuMilieu();
 	private panelContact contacts = new panelContact();
+	private panelImage gallerieImage = new panelImage();
 
 	public MaFrame()
 	{
@@ -41,6 +43,7 @@ public class MaFrame extends JFrame
 	    content.add(milieu, listContent[0]);
 	    content.add(Menu, listContent[1]);
 	    content.add(contacts, listContent[2]);
+	    content.add(gallerieImage, listContent[3]);
 	    
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -72,6 +75,14 @@ public class MaFrame extends JFrame
 		      }
 	        });
 	   
+	   //Lance l'application image
+	   Menu.btnImage.addActionListener(new ActionListener(){
+		   public void actionPerformed(ActionEvent event){				
+			   
+		        cl.show(content, listContent[3]);
+		      }
+	        });
+	   
 	   //Retour au menu
 	   Menu.home.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
@@ -79,6 +90,8 @@ public class MaFrame extends JFrame
 		        cl.show(content, listContent[1]);
 		      }
 	        });
+	   
+	
 		
 	
 	}	
