@@ -9,9 +9,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+
 
 public class panelHaut extends JPanel {
 	
@@ -19,6 +23,9 @@ public class panelHaut extends JPanel {
 	private DateFormat FormatHeure = new SimpleDateFormat("HH:mm");
 	private Timer timerHeure = new Timer(0, new CurrentTime());
 	private JLabel reseau = new JLabel("Swisscom 4G");
+	
+	
+	
 	
 	public panelHaut() {
 		
@@ -32,6 +39,7 @@ public class panelHaut extends JPanel {
 		lblHeure.setFont(new Font("Arial", Font.BOLD, 15));
 		reseau.setForeground(Color.WHITE);
 		add(reseau, BorderLayout.WEST);
+	
 		
 	}
 
