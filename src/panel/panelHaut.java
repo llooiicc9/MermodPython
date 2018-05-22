@@ -36,8 +36,9 @@ public class panelHaut extends JPanel {
 		add(lblHeure);
 		lblHeure.setHorizontalAlignment(JLabel.CENTER);
 		lblHeure.setForeground(Color.WHITE);
-		lblHeure.setFont(new Font("Arial", Font.BOLD, 15));
+		lblHeure.setFont(new Font("Arial", Font.BOLD, 20));
 		reseau.setForeground(Color.WHITE);
+		reseau.setFont(new Font("Arial", Font.BOLD,20));
 		add(reseau, BorderLayout.WEST);
 	
 		
