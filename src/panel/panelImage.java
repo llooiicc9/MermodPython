@@ -1,9 +1,12 @@
 package panel;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -14,24 +17,47 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
+import bouton.btnBase;
 import bouton.btnUnlock;
 
 public class panelImage extends JPanel 
 {
-	public btnUnlock btnunlock= new btnUnlock();
-	private JLabel lblHeure = new JLabel("Images");
-	private JPanel haut = new JPanel();
-	private JPanel bas = new JPanel();
+	private JPanel gridPanel = new JPanel(new GridLayout(0, 3, 7, 7));
+	
 	
 	public panelImage() 
 	{
 		setLayout(new BorderLayout());
-		add(lblHeure, BorderLayout.CENTER);
+		
+		afficheImage();
+		
+		add(gridPanel);
+
+	}
+	
+	public void afficheImage()
+	{
+		JButton vignette;
+		for (int i = 1; i <= 8; i++)  
+		{
+			vignette = new btnBase("images/Gallerie/photo"+i+".jpg");
+			gridPanel.add(vignette);
+		}
+		/*for (Photo photo : photos) 
+		{
+			vignette = new btnBase("images/Gallerie/photo1.jpg");
+			//vignette.addActionListener(new PhotoClick(photo));
+			gridPanel.add(vignette);
+			//photoDetail = new PhotoDetail(photo);
+			//contentPanelPhoto.add(photoDetail, "" + photos.indexOf(photo));
+		}*/
 	}
 	
 	public void paintComponent(Graphics g)
