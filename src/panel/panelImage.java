@@ -37,18 +37,31 @@ import bouton.btnUnlock;
 
 public class panelImage extends JPanel 
 {
-	private JPanel gridPanel = new JPanel(new GridLayout(0, 3, 7, 7));
+	private JPanel gridPanelGallerie = new JPanel(new GridLayout(0, 3, 7, 7));
+	private JPanel PanelImgAgrandie = new JPanel();
 	private JButton btnAdd = new JButton("Add");
 	private String chemin="images/Gallerie";
 	
+	CardLayout CardLayoutGallerie = new CardLayout();
+	JPanel panelContent = new JPanel();
+	String[] listContent = {"gallerie", "imgAgrandie"};
+	
 	public panelImage() 
 	{
+		
+		//On définit le layout
+		panelContent.setLayout(CardLayoutGallerie);
+	    //Permet de changer de panel
+		panelContent.add(gridPanelGallerie, listContent[0]);
+		panelContent.add(PanelImgAgrandie, listContent[1]);
+	    
 		setLayout(new BorderLayout());
 		
 		afficheImage();
 		
 		add(btnAdd, BorderLayout.NORTH);
-		add(gridPanel, BorderLayout.CENTER);
+		add(panelContent, BorderLayout.CENTER);
+		//add(gridPanelGallerie, BorderLayout.CENTER);
 		
 		btnAdd.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
@@ -59,9 +72,10 @@ public class panelImage extends JPanel
 
 	}
 
+	//Ajoute les images au panel
 	public void afficheImage()
 	{
-		JButton vignette;
+		JButton imageGallerie;
 
 		File dossiertest= new File(chemin);		
 		
@@ -72,47 +86,63 @@ public class panelImage extends JPanel
 			for (int i = 0; i < list.length; i++) 
 			{
 				System.out.println(list[i].getName());
-				vignette = new btnBase("images/Gallerie/"+list[i].getName());
-				gridPanel.add(vignette);
+			
+				imageGallerie = new btnBase(chemin+"/"+list[i].getName());
+				imageGallerie.addActionListener(new PhotoClick(imageGallerie));
+				gridPanelGallerie.add(imageGallerie);
 			}
 		
 		}
-		/*for (Photo photo : photos) 
-		{
-			vignette = new btnBase("images/Gallerie/photo1.jpg");
-			//vignette.addActionListener(new PhotoClick(photo));
-			gridPanel.add(vignette);
-			//photoDetail = new PhotoDetail(photo);
-			//contentPanelPhoto.add(photoDetail, "" + photos.indexOf(photo));
-		}*/
 	}
 	
+	//Ajoute une image dans le dossier prévu a cette effet
 	public void addImage()
 	{
 		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Open Resource File");
+		fileChooser.setDialogTitle("Ajouter une image");
 		 
-		 FileNameExtensionFilter filter = new FileNameExtensionFilter(
-			        "JPG & GIF Images", "jpg", "gif","png");
-		 fileChooser.setFileFilter(filter);
-			    int returnVal = fileChooser.showOpenDialog(null);
-		
-			    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			       System.out.println("Ajout du fichier : " + fileChooser.getSelectedFile().getName());
-			     
-			 
-			       Path cheminBase = Paths.get(fileChooser.getSelectedFile().getPath());
-			       Path cheminOuEnregistrer = Paths.get(chemin+"/"+fileChooser.getSelectedFile().getName());
-				   
-					try {
-						Files.copy(cheminBase, cheminOuEnregistrer, StandardCopyOption.REPLACE_EXISTING);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-		
-			    }
+		//Choisis les extensions autorisée
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG , GIF et PNG", "jpg", "gif","png");
+		fileChooser.setFileFilter(filter);
+		 
+	    int returnVal = fileChooser.showOpenDialog(null);
+
+	    if(returnVal == JFileChooser.APPROVE_OPTION) 
+	    { 
+    		System.out.println("Ajout du fichier : " + fileChooser.getSelectedFile().getName());
+     	    		
+     		Path cheminBase = Paths.get(fileChooser.getSelectedFile().getPath());
+    		Path cheminOuEnregistrer = Paths.get(chemin+"/"+fileChooser.getSelectedFile().getName());
+		   
+			try {
+				Files.copy(cheminBase, cheminOuEnregistrer, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+	    }
+	}
+	
+	
+	class PhotoClick implements ActionListener
+	{
+		private JButton imageAagrandir;
+
+		public PhotoClick(JButton imageAagrandir) 
+		{
+			this.imageAagrandir = imageAagrandir;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			PanelImgAgrandie.removeAll();			
+			PanelImgAgrandie.add(imageAagrandir);
+			PanelImgAgrandie.repaint();
+			
+			CardLayoutGallerie.next(panelContent);
+			
+			
+		}
 	}
 	
 }
