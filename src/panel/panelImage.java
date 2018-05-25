@@ -40,6 +40,7 @@ public class panelImage extends JPanel
 	private JPanel gridPanelGallerie = new JPanel(new GridLayout(0, 3, 7, 7));
 	private JPanel PanelImgAgrandie = new JPanel();
 	private JButton btnAdd = new JButton("Add");
+	private JButton btnRetour = new JButton("Retour");
 	private String chemin="images/Gallerie";
 	
 	CardLayout CardLayoutGallerie = new CardLayout();
@@ -64,11 +65,18 @@ public class panelImage extends JPanel
 		//add(gridPanelGallerie, BorderLayout.CENTER);
 		
 		btnAdd.addActionListener(new ActionListener(){
-		   public void actionPerformed(ActionEvent event){				
-			   
+		   public void actionPerformed(ActionEvent event){						   
 		        addImage();
+		        
 		      }
 	        });
+		
+		btnRetour.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){				
+				afficheImage();
+				CardLayoutGallerie.next(panelContent);
+			}
+		});
 
 	}
 
@@ -76,6 +84,7 @@ public class panelImage extends JPanel
 	public void afficheImage()
 	{
 		JButton imageGallerie;
+		gridPanelGallerie.removeAll();
 
 		File dossiertest= new File(chemin);		
 		
@@ -85,7 +94,7 @@ public class panelImage extends JPanel
 			File list[] = dossiertest.listFiles();
 			for (int i = 0; i < list.length; i++) 
 			{
-				System.out.println(list[i].getName());
+				//System.out.println(list[i].getName());
 			
 				imageGallerie = new btnBase(chemin+"/"+list[i].getName());
 				imageGallerie.addActionListener(new PhotoClick(imageGallerie));
@@ -116,6 +125,9 @@ public class panelImage extends JPanel
 		   
 			try {
 				Files.copy(cheminBase, cheminOuEnregistrer, StandardCopyOption.REPLACE_EXISTING);
+				
+				CardLayoutGallerie.show(panelContent, listContent[0]);
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}	
@@ -132,16 +144,14 @@ public class panelImage extends JPanel
 			this.imageAagrandir = imageAagrandir;
 		}
 
-		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
 			PanelImgAgrandie.removeAll();			
-			PanelImgAgrandie.add(imageAagrandir);
-			PanelImgAgrandie.repaint();
+			PanelImgAgrandie.add(imageAagrandir,BorderLayout.CENTER);
+			PanelImgAgrandie.add(btnRetour,BorderLayout.SOUTH);
 			
 			CardLayoutGallerie.next(panelContent);
-			
-			
+
 		}
 	}
 	
