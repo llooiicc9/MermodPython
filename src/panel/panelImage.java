@@ -54,6 +54,7 @@ public class panelImage extends JPanel
 		//JScrollPane scroll = new JScrollPane(gridPanelGallerie); -- si on veut mettre une scrollbar
 		//On définit le layout
 		panelContent.setLayout(CardLayoutGallerie);
+		
 	    //Permet de changer de panel
 		panelContent.add(gridPanelGallerie, listContent[0]);
 		panelContent.add(PanelImgAgrandie, listContent[1]);
