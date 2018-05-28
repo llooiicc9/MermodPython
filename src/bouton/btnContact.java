@@ -19,6 +19,4 @@ public class btnContact extends btnBase
 		super("images/Contacts.png");
 	}
 
-	
-	
 }

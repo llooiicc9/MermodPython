@@ -20,7 +20,7 @@ import panel.panelHaut;
 import panel.panelMenuMilieu;
 import panel.panelUnlockMilieu;
 
-
+//SMB
 public class MaFrame extends JFrame 
 {
 	CardLayout cl = new CardLayout();

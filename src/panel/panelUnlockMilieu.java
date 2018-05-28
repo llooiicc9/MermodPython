@@ -5,14 +5,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
@@ -29,27 +24,21 @@ import bouton.btnUnlock;
 public class panelUnlockMilieu extends JPanel 
 {
 	public btnUnlock btnunlock= new btnUnlock();
+	private JLabel lblHeure = new JLabel();
 	private JPanel haut = new JPanel();
 	private JPanel bas = new JPanel();
 	
-	
-	private JLabel date = new JLabel();
-	private DateFormat FormatDate = new SimpleDateFormat("EEEE dd MMM");
-	private Timer timerDate = new Timer(0, new CurrentDate());
-	
 	public panelUnlockMilieu() 
-	{	
-				
+	{
+		// Heure		
+		Date maDate = new Date(); 
 		bas.setOpaque(false);
 		haut.setOpaque(false);
 	
-						
-		
-		
-		timerDate.start();
-		date.setHorizontalAlignment(JLabel.CENTER);
-		date.setForeground(Color.WHITE);
-		date.setFont(new Font("Arial", Font.BOLD, 60));
+		lblHeure.setText(maDate.getHours()+" : "+maDate.getMinutes());
+		lblHeure.setHorizontalAlignment(JLabel.CENTER);
+		lblHeure.setForeground(Color.BLACK);
+		lblHeure.setFont(new Font("Arial", Font.BOLD, 70));
 		
 		//Boutton
 		setLayout(new BorderLayout());
@@ -58,20 +47,9 @@ public class panelUnlockMilieu extends JPanel
 		btnunlock.setBorder(new EmptyBorder(0, 0, 30, 0));
 		
 		//add(backgroundImage);
-		add(date,BorderLayout.NORTH);
+		add(lblHeure, BorderLayout.NORTH);
 		add(btnunlock,BorderLayout.SOUTH);	
 
-	}
-	
-	
-	class CurrentDate implements ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent e)
-		{
-			Calendar now = Calendar.getInstance();
-			date.setText(FormatDate.format(now.getTime()));
-		}
 	}
 	
 	public void paintComponent(Graphics g)
