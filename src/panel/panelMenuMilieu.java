@@ -32,27 +32,19 @@ import bouton.btnUnlock;
 
 public class panelMenuMilieu extends JPanel 
 {
-	private JLabel lblHeure = new JLabel();
 	private panelBase haut = new panelBase();
-	private panelBase bas = new panelBase();
+	public panelBase bas = new panelBase();
 	private panelBase milieu = new panelBase();
 	public btnContact btnContacts = new btnContact();
 	public btnImage btnImage = new btnImage();
 	public btnPizza btnContacts2 = new btnPizza();
 	
-	public btnBase home = new btnBase("images/Home.png");
+	//public btnBase home = new btnBase("images/Home.png");
 	
 	public panelMenuMilieu() 
 	{
 		setLayout(new BorderLayout());
 		// Heure		
-		Date maDate = new Date(); 		
-	
-		lblHeure.setBorder(new EmptyBorder(0, 0, 30, 0));
-		lblHeure.setText(maDate.getHours()+" : "+maDate.getMinutes());
-		lblHeure.setHorizontalAlignment(JLabel.LEFT);
-		lblHeure.setForeground(Color.BLACK);
-		lblHeure.setFont(new Font("Arial", Font.BOLD, 20));	
 		
 		// Pour avoir plein d'icone 3 sur 4
 	/*	milieu.setLayout(new GridBagLayout());
@@ -101,12 +93,11 @@ public class panelMenuMilieu extends JPanel
 		milieu.add(btnContacts);		
 		milieu.add(btnImage);
 		milieu.add(btnContacts2);
-		haut.add(lblHeure);
-		bas.add(home);
+	//	bas.add(home);
 		
-		add(haut, BorderLayout.NORTH);
+		//add(haut, BorderLayout.NORTH);
 		add(milieu,BorderLayout.CENTER);	
-		add(bas,BorderLayout.SOUTH);
+		//add(bas,BorderLayout.SOUTH);
 			
 	}
 	

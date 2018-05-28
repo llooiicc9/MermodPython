@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -12,27 +11,27 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import bouton.btnBase;
 import bouton.btnUnlock;
 import panel.panelBas;
 import panel.panelContact;
 import panel.panelHaut;
+import panel.panelImage;
 import panel.panelMenuMilieu;
 import panel.panelUnlockMilieu;
 
-//SMB
+
 public class MaFrame extends JFrame 
 {
 	CardLayout cl = new CardLayout();
 	JPanel content = new JPanel();
-	String[] listContent = {"Lock", "Menu", "Contact","AjoutContact","Gallerie"};
+	String[] listContent = {"Lock", "Menu", "Contact", "Image"};
 	
 	private panelHaut nord = new panelHaut();
 	private panelBas sud = new panelBas();
 	private panelUnlockMilieu milieu = new panelUnlockMilieu();
 	private panelMenuMilieu Menu = new panelMenuMilieu();
 	private panelContact contacts = new panelContact();
-	
+	private panelImage gallerieImage = new panelImage();
 
 	public MaFrame()
 	{
@@ -44,8 +43,7 @@ public class MaFrame extends JFrame
 	    content.add(milieu, listContent[0]);
 	    content.add(Menu, listContent[1]);
 	    content.add(contacts, listContent[2]);
-	    //content.add(image, listContent[3]);
-	    //content.add(image, listContent[4]);
+	    content.add(gallerieImage, listContent[3]);
 	    
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -57,7 +55,7 @@ public class MaFrame extends JFrame
 		add(sud,BorderLayout.SOUTH);
 		//add(milieu,BorderLayout.CENTER);
 		
-		setSize(638, 1050);
+		setSize(450, 800);
 	    getContentPane().add(content, BorderLayout.CENTER);
 	    setVisible(true);
 		
@@ -73,88 +71,27 @@ public class MaFrame extends JFrame
 	   Menu.btnContacts.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
 			   
-		       cl.show(content, listContent[2]);
-		        
-				//setLayout(new BorderLayout());
-				
-				btnBase add = new btnBase("images/add.png");
-				JLabel label = new JLabel("Tous les contacts");
-				add.setBackground(Color.BLUE);
-			
-				
-				contacts.add(label);
-				contacts.add(add);
-				setVisible(true);
-				
-				
-				contacts.add.addActionListener(new ActionListener(){
-					   public void actionPerformed(ActionEvent event){				
-						   
-						   cl.show(content, listContent[3]);
-						    
-					        JTextField nom = new JTextField("Nom");
-					        JTextField prenom = new JTextField("Prénom");
-					        JTextField numero = new JTextField("Numéro");
-					        JTextField adresse = new JTextField("Adresse");
-					        
-					        contacts.add(nom);
-					        contacts.add(prenom);
-					        setVisible(true);
-					        
-					       
-					        
-					      }
-				        });
-				
+		        cl.show(content, listContent[2]);
 		      }
 	        });
 	   
-	   //Lance l'application gallerie
+	   //Lance l'application image
 	   Menu.btnImage.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
 			   
-		       cl.show(content, listContent[4]);
-		        
-				//setLayout(new BorderLayout());
-				
-				btnBase add = new btnBase("images/add.png");
-				JLabel ekcfslq = new JLabel("Est-ce que ça jouuuuue");
-				
-				
-				
-				
-
-				
-				
-				setVisible(true);
-				
-				
-				add.addActionListener(new ActionListener(){
-					   public void actionPerformed(ActionEvent event){				
-						   
-						    
-					        JTextField nom = new JTextField("Nom");
-					        JTextField prenom = new JTextField("Prénom");
-					        JTextField numero = new JTextField("Numéro");
-					        JTextField adresse = new JTextField("Adresse");
-					        
-					       
-					        
-					      }
-				        });
-				
+		        cl.show(content, listContent[3]);
 		      }
 	        });
 	   
-	   
 	   //Retour au menu
-	   Menu.home.addActionListener(new ActionListener(){
+	   sud.btnHome.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
 			   
 		        cl.show(content, listContent[1]);
 		      }
 	        });
-		
+	   
+
 	
 	}	
 
