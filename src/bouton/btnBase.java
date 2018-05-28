@@ -11,14 +11,17 @@ import fenetre.MonDialog;
 
 public class btnBase extends JButton 
 {
+	public String CheminImage ;
 	
 	public btnBase(String CheminImage) 
 	{
 		super();
-		definitionBtn(CheminImage);
+		this.CheminImage = CheminImage;
+		
+		definitionBtn();
 	}
 	
-	private void definitionBtn(String CheminImage)
+	private void definitionBtn()
 	{
 		//Choix de l'image pour remplacer le boutton
 		setIcon(new ImageIcon(CheminImage));

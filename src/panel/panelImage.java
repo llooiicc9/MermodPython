@@ -40,8 +40,10 @@ public class panelImage extends JPanel
 	private JPanel gridPanelGallerie = new JPanel(new GridLayout(0, 3, 7, 7));
 	private JPanel PanelImgAgrandie = new JPanel();
 	private JButton btnAdd = new JButton("Add");
-	private JButton btnRetour = new JButton("Retour");
+	private JButton btnRetour = new btnBase("images/Retour.png");
+	private JButton btnDelete = new btnBase("images/delete.png");
 	private String chemin="images/Gallerie";
+	private String ImgDel ="";
 	
 	CardLayout CardLayoutGallerie = new CardLayout();
 	JPanel panelContent = new JPanel();
@@ -49,7 +51,7 @@ public class panelImage extends JPanel
 	
 	public panelImage() 
 	{
-		
+		//JScrollPane scroll = new JScrollPane(gridPanelGallerie); -- si on veut mettre une scrollbar
 		//On définit le layout
 		panelContent.setLayout(CardLayoutGallerie);
 	    //Permet de changer de panel
@@ -62,19 +64,28 @@ public class panelImage extends JPanel
 		
 		add(btnAdd, BorderLayout.NORTH);
 		add(panelContent, BorderLayout.CENTER);
-		//add(gridPanelGallerie, BorderLayout.CENTER);
 		
 		btnAdd.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){						   
 		        addImage();
-		        
+		        CardLayoutGallerie.next(panelContent);
+				CardLayoutGallerie.show(panelContent, listContent[0]);
 		      }
 	        });
+		
+		btnDelete.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent event){						   
+			        delImage();
+			        afficheImage();
+					CardLayoutGallerie.next(panelContent);
+			      }
+		        });
+
 		
 		btnRetour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){				
 				afficheImage();
-				CardLayoutGallerie.next(panelContent);
+				CardLayoutGallerie.show(panelContent, listContent[0]);
 			}
 		});
 
@@ -83,7 +94,7 @@ public class panelImage extends JPanel
 	//Ajoute les images au panel
 	public void afficheImage()
 	{
-		JButton imageGallerie;
+		btnBase imageGallerie;
 		gridPanelGallerie.removeAll();
 
 		File dossiertest= new File(chemin);		
@@ -97,7 +108,7 @@ public class panelImage extends JPanel
 				//System.out.println(list[i].getName());
 			
 				imageGallerie = new btnBase(chemin+"/"+list[i].getName());
-				imageGallerie.addActionListener(new PhotoClick(imageGallerie));
+				imageGallerie.addActionListener(new AgrandirImg(imageGallerie));
 				gridPanelGallerie.add(imageGallerie);
 			}
 		
@@ -125,8 +136,7 @@ public class panelImage extends JPanel
 		   
 			try {
 				Files.copy(cheminBase, cheminOuEnregistrer, StandardCopyOption.REPLACE_EXISTING);
-				
-				CardLayoutGallerie.show(panelContent, listContent[0]);
+				afficheImage();
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -134,25 +144,35 @@ public class panelImage extends JPanel
 	    }
 	}
 	
-	
-	class PhotoClick implements ActionListener
+	//Suppression de l'image
+	public void delImage()
 	{
-		private JButton imageAagrandir;
+		File monFichier = new File(ImgDel);
+		monFichier.delete();
+	}
+	
+	class AgrandirImg implements ActionListener
+	{
+		private btnBase imageAagrandir;
 
-		public PhotoClick(JButton imageAagrandir) 
+		public AgrandirImg(btnBase imageAagrandir) 
 		{
 			this.imageAagrandir = imageAagrandir;
 		}
 
 		public void actionPerformed(ActionEvent e) 
 		{
+			//Defini le chemin de l'image à supprimer
+			ImgDel = imageAagrandir.CheminImage;
+			//Remet a 0 le panel
 			PanelImgAgrandie.removeAll();			
 			PanelImgAgrandie.add(imageAagrandir,BorderLayout.CENTER);
 			PanelImgAgrandie.add(btnRetour,BorderLayout.SOUTH);
+			PanelImgAgrandie.add(btnDelete,BorderLayout.SOUTH);
 			
 			CardLayoutGallerie.next(panelContent);
-
 		}
 	}
+
 	
 }
