@@ -55,7 +55,7 @@ public class MaFrame extends JFrame
 		add(sud,BorderLayout.SOUTH);
 		//add(milieu,BorderLayout.CENTER);
 		
-		setSize(425, 700);
+		setSize(450, 800);
 	    getContentPane().add(content, BorderLayout.CENTER);
 	    setVisible(true);
 		
@@ -84,15 +84,14 @@ public class MaFrame extends JFrame
 	        });
 	   
 	   //Retour au menu
-	   Menu.home.addActionListener(new ActionListener(){
+	   sud.btnHome.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
 			   
 		        cl.show(content, listContent[1]);
 		      }
 	        });
 	   
-	
-		
+
 	
 	}	
 
