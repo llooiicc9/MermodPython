@@ -31,6 +31,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.SpringLayout;
@@ -68,7 +69,7 @@ public class panelContact extends JPanel
 	private JPanel haut = new JPanel();
 	private JPanel bas = new JPanel();
 	//Panel du listener du bouton ajout
-	private JPanel pane = new JPanel(new GridLayout(5,2));
+	private JPanel pane = new JPanel(new GridLayout(6,2));
 	//Panel d'affichage de la liste
 	private JPanel liste = new JPanel();
 	private ArrayList<Contact> contacts = new ArrayList<Contact>();
@@ -112,6 +113,8 @@ public class panelContact extends JPanel
 						pane.add(numero);
 						pane.add(Adresse);
 						pane.add(adresse);
+						pane.add(Mail);
+						pane.add(mail);
 						pane.add(ok);
 						pane.add(retour);
 
@@ -180,6 +183,15 @@ public class panelContact extends JPanel
 	}
 	
 	public void addContact() {
+		
+		Contact test = new Contact(nom.getText(), prenom.getText(), numero.getText(), adresse.getText(), mail.getText());
+		String a = nom.getText() + prenom.getText();
+		btnBase contact = new btnBase(test);
+		contact.setText(a);
+		
+		JPanel liste = new JPanel();
+		liste.add(contact);
+		this.add(liste);
 		
 	}
 }
