@@ -3,7 +3,7 @@ package Apps;
 import java.io.Serializable;
 
 
-//SMB
+
 public class Contact implements Serializable{
 
 	private String nom;

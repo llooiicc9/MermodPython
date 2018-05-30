@@ -27,6 +27,7 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -45,13 +46,9 @@ import fenetre.MaFrame;
 
 public class panelContact extends JPanel 
 {
-	public btnBase ajout = new btnBase("images/add.png");
-	private JLabel text = new JLabel("Ajouter un contact");
-	private JPanel haut = new JPanel();
-	private JPanel bas = new JPanel();
-	private JPanel pane = new JPanel();
-	private MaFrame maFrame;
-	private ArrayList<Contact> contacts = new ArrayList<Contact>();
+	//bouton de validation et de retour lors de l'ajout d'un client (ajouter la suppression)
+	public btnBase ok = new btnBase("images/validate.png");
+	public btnBase retour = new btnBase("images/Retour.png");
 	private JLabel Nom = new JLabel("Nom :");
 	private JTextField nom = new JTextField();
 	private JLabel Prenom = new JLabel("Prenom :");
@@ -62,81 +59,95 @@ public class panelContact extends JPanel
     private JTextField adresse = new JTextField();
     private JLabel Mail = new JLabel("Mail : ");
     private JTextField mail = new JTextField();
-    
+
+	//bouton et texte affiché dans la page principale contact avec la liste des contacts
+	public btnBase ajout = new btnBase("images/add.png");
+	private JLabel text = new JLabel("Ajouter un contact");
+	
+	//panel de base d'affichage
+	private JPanel haut = new JPanel();
+	private JPanel bas = new JPanel();
+	//Panel du listener du bouton ajout
+	private JPanel pane = new JPanel(new GridLayout(5,2));
+	//Panel d'affichage de la liste
+	private JPanel liste = new JPanel();
+	private ArrayList<Contact> contacts = new ArrayList<Contact>();
+	
+    //CardLayout + panel conteneur qui va changer les fenêtre selon l'action de l'utilisateur (ajout, retour, etc)
+    CardLayout CardLayoutContact = new CardLayout();
+	String[] listContent = {"liste", "ajout"};
+	JPanel base = new JPanel();
+	JPanel north= new JPanel();
 	
 	public panelContact() {
 		
-		this.setBackground(Color.WHITE);
-		this.add(text);
-		this.add(ajout);
+		setLayout(new BorderLayout());
+		north.add(text);
+		north.add(ajout);
 		
+		add(north,BorderLayout.NORTH);
+		
+		JPanel center= new JPanel();
+		
+		base.setLayout(CardLayoutContact);
+		setBackground(Color.WHITE);
+		base.add(center, listContent[0]);
+		base.add(pane, listContent[1]);
+		add(base,BorderLayout.CENTER);
+		
+		
+		
+	
 		ajout.addActionListener(new ActionListener(){
 			   public void actionPerformed(ActionEvent event){				
 				   
-				   System.out.println("Salut");
-				   
-			        	/* Pour avoir plein d'icone
-						pane.setLayout(new GridBagLayout());
-						// Le gridBagConstraints va définir la position et la taille des éléments 
-						GridBagConstraints gc = new GridBagConstraints();
-						gc.fill = GridBagConstraints.BOTH;
-						// insets définit la marge entre les composants new Insets(margeSupérieure, margeGauche, margeInférieur, margeDroite)
-						gc.insets = new Insets(0, 0, 0, 0);
-						
-						//Défini les case en x et y
-						gc.weightx = 1;
-						gc.weighty = 4;
-						
-						gc.gridy = 0;
-						gc.gridx = 0;
-						pane.add(nom, gc);
-						
-						gc.gridy = 1;
-						gc.gridx = 0;
-						pane.add(prenom, gc);
-						
-						gc.gridy = 2;
-						gc.gridx = 0;
-						pane.add(numero, gc);
-						
-						gc.gridy = 3;
-						gc.gridx = 0;
-						pane.add(adresse,gc);*/
-				   
-				   	pane.setLayout(new GridLayout(5,2));
-					
-					pane.add(Nom);
-					pane.add(nom);
-					pane.add(Prenom);
-					pane.add(prenom);
-					pane.add(Numero);
-					pane.add(numero);
-					pane.add(Adresse);
-					pane.add(adresse);
-					pane.add(Mail);
-					pane.add(mail);
-		
-					
-					pane.setVisible(true);
-				   
+					//   System.out.println("Salut");
+					   
+					    north.removeAll();
+					    pane.add(Nom);
+					    pane.add(nom);
+					    pane.add(Prenom);
+					    pane.add(prenom);
+						pane.add(Numero);
+						pane.add(numero);
+						pane.add(Adresse);
+						pane.add(adresse);
+						pane.add(ok);
+						pane.add(retour);
 
-			      }
-		        });
-		
+						CardLayoutContact.show(base, listContent[1]);
+						
+					    retour.addActionListener(new ActionListener(){
+							public void actionPerformed(ActionEvent event){				
+								
+								north.add(text);
+								north.add(ajout);
+								add(north,BorderLayout.NORTH);
+								CardLayoutContact.show(base, listContent[0]);
+				      }
+			        });
+					   
+					   ok.addActionListener(new ActionListener() {
+						   public void actionPerformed(ActionEvent event) {
+							    north.add(text);
+								north.add(ajout);
+								add(north,BorderLayout.NORTH);
+								
+							   addContact();
+							   
+							   CardLayoutContact.show(base, listContent[0]);
+						   }
+					   });
+				   }
+		});
+
 	}
-	public panelContact(MaFrame maFrame) 
-	{
-		this.maFrame=maFrame;
-		this.setBackground(Color.WHITE);
-		
-	}
-	
 	//Enregistre les contacts créés
 	public void serializeObject() 
 	{
 		try 
 		{
-			FileOutputStream FichierContact = new FileOutputStream("C/Users/mermo/Desktop/Cours/Semestre 2/POO/MermodPython/Serialize/contact.ser");
+			FileOutputStream FichierContact = new FileOutputStream("Serialize/contact.ser");
 			ObjectOutputStream OutputContact = new ObjectOutputStream(FichierContact);
 			OutputContact.writeObject(contacts);
 			OutputContact.flush();
@@ -152,7 +163,7 @@ public class panelContact extends JPanel
 	{
 		try 
 		{
-			FileInputStream FichierContact = new FileInputStream("C/Users/mermo/Desktop/Cours/Semestre 2/POO/MermodPython/Serialize/contact.ser");
+			FileInputStream FichierContact = new FileInputStream("Serialize/contact.ser");
 			ObjectInputStream InputContact = new ObjectInputStream(FichierContact);
 			contacts = (ArrayList<Contact>) InputContact.readObject();
 			InputContact.close();
@@ -168,16 +179,10 @@ public class panelContact extends JPanel
 		}
 	}
 	
-	     
-   
-}
-
-class ListeContact extends JList<Contact>{
-	
-	public ListeContact() {
-		
-		
-		
+	public void addContact() {
 		
 	}
 }
+	
+	     
+	

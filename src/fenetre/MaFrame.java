@@ -55,7 +55,7 @@ public class MaFrame extends JFrame
 		add(sud,BorderLayout.SOUTH);
 		//add(milieu,BorderLayout.CENTER);
 		
-		setSize(450, 800);
+		setSize(675, 1200);
 	    getContentPane().add(content, BorderLayout.CENTER);
 	    setVisible(true);
 		
