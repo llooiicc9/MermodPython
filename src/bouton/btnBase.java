@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Apps.Contact;
 import fenetre.MaFrame;
 import fenetre.MonDialog;
 
@@ -13,6 +14,15 @@ public class btnBase extends JButton
 {
 	public String CheminImage ;
 	
+	public btnBase() {
+		
+		definitionBtn();
+	}
+	
+	public btnBase(Contact contact) {
+		
+		definitionBtn();
+	}
 	public btnBase(String CheminImage) 
 	{
 		super();
