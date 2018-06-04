@@ -91,13 +91,9 @@ public class MaFrame extends JFrame
 		        cl.show(content, listContent[1]);
 		      }
 	        });
-	   
 
-	
 	}	
 
-
-	
 }
 
 

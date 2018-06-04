@@ -39,7 +39,11 @@ public class panelMenuMilieu extends JPanel
 			
 	}
 	
-	//Classe qui permet sur le clique du btnEteindre de fermer l'application
+	/**
+	 Classe qui permet sur le clique du btnEteindre de fermer l'application
+	 * @author Loïc
+	 *
+	 */
 	class fermerApplication implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
@@ -48,7 +52,7 @@ public class panelMenuMilieu extends JPanel
 		}
 		
 	}
-		
+	
 	public void paintComponent(Graphics g)
     {
 		try 
