@@ -193,7 +193,7 @@ public class panelContact extends JPanel
 		
 	}
 	
-	// vraiment utile ?
+	// vraiment utile ? pas mieux de faire un panel gridlayout de la taille de l'arrayList avec une taille définie de bouton et une scrollbar
 	class ContactList extends JPanel {
 		private JPanel panelListe = new JPanel();
 		private JScrollPane scroll = new JScrollPane(panelListe);
