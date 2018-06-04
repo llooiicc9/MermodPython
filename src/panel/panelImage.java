@@ -35,6 +35,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import bouton.btnBase;
 import bouton.btnUnlock;
 
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Python Loïc<br/>
+ * Extention de la classe : JPanel <br/>
+ * Description de la classe : Ce panel gère la gallerie d'image. <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
+
 public class panelImage extends JPanel 
 {
 	private JPanel gridPanelGallerie = new JPanel(new GridLayout(0, 3, 7, 7));
@@ -49,6 +62,11 @@ public class panelImage extends JPanel
 	JPanel panelContent = new JPanel();
 	String[] listContent = {"gallerie", "imgAgrandie"};
 	
+	/**
+	 * Constructeur panelImage
+	 * @param mainFrame
+	 * @author Loïc
+	 */
 	public panelImage() 
 	{
 		//JScrollPane scroll = new JScrollPane(gridPanelGallerie); -- si on veut mettre une scrollbar
@@ -92,7 +110,11 @@ public class panelImage extends JPanel
 
 	}
 
-	//Ajoute les images au panel
+	/**
+	 Affiche les images au panel
+	 * @author Loïc
+	 *
+	 */
 	public void afficheImage()
 	{
 		btnBase imageGallerie;
@@ -116,7 +138,11 @@ public class panelImage extends JPanel
 		}
 	}
 	
-	//Ajoute une image dans le dossier prévu a cette effet
+	/**
+	 Ajoute une image dans le dossier prévu a cette effet
+	 * @author Loïc
+	 *
+	 */
 	public void addImage()
 	{
 		JFileChooser fileChooser = new JFileChooser();
@@ -145,13 +171,22 @@ public class panelImage extends JPanel
 	    }
 	}
 	
-	//Suppression de l'image
+	/**
+	Suppression de l'image
+	 * @author Loïc
+	 *
+	 */
 	public void delImage()
 	{
 		File monFichier = new File(ImgDel);
 		monFichier.delete();
 	}
 	
+	/**
+	 Quand on clique sur une image ça l'agrandit
+	 * @author Loïc
+	 *
+	 */
 	class AgrandirImg implements ActionListener
 	{
 		private btnBase imageAagrandir;
