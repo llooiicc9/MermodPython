@@ -28,6 +28,7 @@ public class panelHaut extends JPanel {
 	private JLabel reseau = new JLabel("Swisscom 4G");
 	private JButton hp = new btnBase("images/top.png");
 	
+	
 	public panelHaut() {
 		
 		setLayout(new BorderLayout());
@@ -55,4 +56,6 @@ public class panelHaut extends JPanel {
 			lblHeure.setText(FormatHeure.format(now.getTime()));
 		}
 	}
+	
 }
+
