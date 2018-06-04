@@ -32,6 +32,7 @@ public class MaFrame extends JFrame
 	private panelMenuMilieu Menu = new panelMenuMilieu();
 	private panelContact contacts = new panelContact();
 	private panelImage gallerieImage = new panelImage();
+	
 
 	public MaFrame()
 	{
@@ -55,7 +56,7 @@ public class MaFrame extends JFrame
 		add(sud,BorderLayout.SOUTH);
 		//add(milieu,BorderLayout.CENTER);
 		
-		setSize(675, 1200);
+		setSize(450, 800);
 	    getContentPane().add(content, BorderLayout.CENTER);
 	    setVisible(true);
 		
