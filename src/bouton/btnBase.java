@@ -22,6 +22,8 @@ public class btnBase extends JButton
 	public btnBase(Contact contact) {
 		
 		definitionBtn();
+		setBorderPainted(true);
+		
 	}
 	public btnBase(String CheminImage) 
 	{

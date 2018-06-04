@@ -32,6 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.SpringLayout;
@@ -50,6 +51,7 @@ public class panelContact extends JPanel
 	//bouton de validation et de retour lors de l'ajout d'un client (ajouter la suppression)
 	public btnBase ok = new btnBase("images/validate.png");
 	public btnBase retour = new btnBase("images/Retour.png");
+	//Permet de rentrer un nouveau contact
 	private JLabel Nom = new JLabel("Nom :");
 	private JTextField nom = new JTextField();
 	private JLabel Prenom = new JLabel("Prenom :");
@@ -71,38 +73,37 @@ public class panelContact extends JPanel
 	//Panel du listener du bouton ajout
 	private JPanel pane = new JPanel(new GridLayout(6,2));
 	//Panel d'affichage de la liste
-	private JPanel liste = new JPanel();
 	private ArrayList<Contact> contacts = new ArrayList<Contact>();
+	
 	
     //CardLayout + panel conteneur qui va changer les fenêtre selon l'action de l'utilisateur (ajout, retour, etc)
     CardLayout CardLayoutContact = new CardLayout();
-	String[] listContent = {"liste", "ajout"};
+	String[] listContent = {"liste", "ajout","affiche"};
 	JPanel base = new JPanel();
 	JPanel north= new JPanel();
+	JPanel affiche = new JPanel();
+	
 	
 	public panelContact() {
 		
+		text.setFont(new Font("Arial", Font.BOLD, 40));
 		setLayout(new BorderLayout());
 		north.add(text);
 		north.add(ajout);
-		
 		add(north,BorderLayout.NORTH);
-		
+
 		JPanel center= new JPanel();
 		
 		base.setLayout(CardLayoutContact);
 		setBackground(Color.WHITE);
 		base.add(center, listContent[0]);
 		base.add(pane, listContent[1]);
+		base.add(affiche,listContent[2]);
 		add(base,BorderLayout.CENTER);
 		
 		
-		
-	
 		ajout.addActionListener(new ActionListener(){
 			   public void actionPerformed(ActionEvent event){				
-				   
-					//   System.out.println("Salut");
 					   
 					    north.removeAll();
 					    pane.add(Nom);
@@ -120,6 +121,7 @@ public class panelContact extends JPanel
 
 						CardLayoutContact.show(base, listContent[1]);
 						
+						//En cliquant sur retour on revient à la page d'affichage des contacts
 					    retour.addActionListener(new ActionListener(){
 							public void actionPerformed(ActionEvent event){				
 								
@@ -129,16 +131,17 @@ public class panelContact extends JPanel
 								CardLayoutContact.show(base, listContent[0]);
 				      }
 			        });
-					   
+					   //En cliquant sur valider, on revient sur la page d'affichage des contacts avec le nouveau contact intégré
 					   ok.addActionListener(new ActionListener() {
 						   public void actionPerformed(ActionEvent event) {
 							    north.add(text);
 								north.add(ajout);
 								add(north,BorderLayout.NORTH);
 								
-							   addContact();
+							    addContact();
 							   
-							   CardLayoutContact.show(base, listContent[0]);
+							   
+							    CardLayoutContact.show(base, listContent[0]);
 						   }
 					   });
 				   }
@@ -161,7 +164,7 @@ public class panelContact extends JPanel
 			e.printStackTrace();
 		}
 	}
-	//A l'inverse, va supprimer le fichier enregistrer
+	// Charge les contacts
 	public void deSerializeObject() 
 	{
 		try 
@@ -181,18 +184,78 @@ public class panelContact extends JPanel
 
 		}
 	}
-	
+	//Ajoute le contact dans la liste et l'écrit dans un fichier
 	public void addContact() {
 		
 		Contact test = new Contact(nom.getText(), prenom.getText(), numero.getText(), adresse.getText(), mail.getText());
-		String a = nom.getText() + prenom.getText();
-		btnBase contact = new btnBase(test);
-		contact.setText(a);
+		contacts.add(test);
+		serializeObject();
 		
-		JPanel liste = new JPanel();
-		liste.add(contact);
+	}
+	
+	// vraiment utile ?
+	class ContactList extends JPanel {
+		private JPanel panelListe = new JPanel();
+		private JScrollPane scroll = new JScrollPane(panelListe);
+
+		/**
+		 * Constructeur de la liste des contacts
+		 * @author Rafael Peixoto
+		 */
+		public ContactList() 
+		{
+			panelListe.setLayout(new BoxLayout(panelListe, BoxLayout.Y_AXIS));
+			afficheContact();
+		}
+	
+		//Modifie la liste de contact
+		public void updateContact() {
+		
+		
+		}
+		
+		//Modifie le contact
+		private void modifyContact(Contact contact) {
+		
+			contacts.set(contacts.indexOf(contact), contact);
+			updateContact();
+		}
+		
+		//Supprime le contact
+		private void delete(Contact contact) {
+			contacts.remove(contact);
+			updateContact();
+		}
+	
+		//Affiche les contacts sous forme de bouton en nom prénom
+		public void afficheContact() {
+		
+			btnBase contact;
+		
+			for(int i=0; i<contacts.size();i++) {
+				contact = new btnBase(contacts.get(i).getNom()+" "+contacts.get(i).getPrenom());
+				panelListe.add(contact);
+				contact.setBackground(Color.BLACK);
+				contact.setFont(new Font("Arial", Font.BOLD, 60));
+		}
+		
+		
+		ContactList liste = new ContactList();
+		liste.setLayout(new GridLayout(contacts.size(),1));
+		liste.add(panelListe);
 		this.add(liste);
 		
+		
+		/*contact.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				
+				JPanel affiche = new JPanel();
+				JLabel infos = new JLabel();
+				CardLayoutContact.show(base, listContent[2]);
+				
+			}
+		});*/
+	}
 	}
 }
 	

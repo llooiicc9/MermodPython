@@ -40,7 +40,7 @@ public class panelHaut extends JPanel {
 		lblHeure.setFont(new Font("Arial", Font.BOLD, 20));
 		reseau.setForeground(Color.WHITE);
 		reseau.setFont(new Font("Arial", Font.BOLD,20));
-		add(lblHeure, BorderLayout.EAST);
+		add(lblHeure, BorderLayout.CENTER);
 		add(reseau, BorderLayout.WEST);
 	
 		
