@@ -176,7 +176,7 @@ public class panelContact extends JPanel
 					affiche.add(Mail);
 					affiche.add(modifier);
 					affiche.add(delete);
-					affiche.add(retour);
+					//affiche.add(retour);
 					
 					CardLayoutContact.show(base, listContent[2]);
 					
@@ -212,7 +212,7 @@ public class panelContact extends JPanel
 				e.printStackTrace();
 			}
 		}
-		// Charge les contacts
+		// Charge les contacts 
 		public void deSerializeObject() 
 		{
 			try 

@@ -18,11 +18,12 @@ public class btnBase extends JButton
 		
 		definitionBtn();
 	}
-	
+	//bouton contact
 	public btnBase(Contact contact) {
 		
 		//definitionBtn();
 		setBorderPainted(true);
+		
 		
 	}
 	public btnBase(String CheminImage) 
