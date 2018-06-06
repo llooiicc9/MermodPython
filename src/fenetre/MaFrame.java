@@ -13,7 +13,9 @@ import javax.swing.border.EmptyBorder;
 
 import bouton.btnUnlock;
 import panel.panelBas;
+import panel.panelCalculette;
 import panel.panelContact;
+import panel.panelDemineur;
 import panel.panelHaut;
 import panel.panelImage;
 import panel.panelMenuMilieu;
@@ -24,7 +26,7 @@ public class MaFrame extends JFrame
 {
 	CardLayout cl = new CardLayout();
 	JPanel content = new JPanel();
-	String[] listContent = {"Lock", "Menu", "Contact", "Image"};
+	String[] listContent = {"Lock", "Menu", "Contact", "Image","Demineur","Calculette"};
 	
 	private panelHaut nord = new panelHaut();
 	private panelBas sud = new panelBas();
@@ -32,6 +34,8 @@ public class MaFrame extends JFrame
 	private panelMenuMilieu Menu = new panelMenuMilieu();
 	private panelContact contacts = new panelContact();
 	private panelImage gallerieImage = new panelImage();
+	//private panelDemineur demineur = new panelDemineur();
+	private panelCalculette calcul = new panelCalculette();
 	
 
 	public MaFrame()
@@ -45,6 +49,8 @@ public class MaFrame extends JFrame
 	    content.add(Menu, listContent[1]);
 	    content.add(contacts, listContent[2]);
 	    content.add(gallerieImage, listContent[3]);
+	    //content.add(demineur, listContent[4]);
+	    content.add(calcul,listContent[5]);
 	    
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -91,6 +97,18 @@ public class MaFrame extends JFrame
 		        cl.show(content, listContent[1]);
 		      }
 	        });
+	   
+	  /* Menu.btnContacts2.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent event) {
+			   cl.show(content, listContent[4]);
+		   }
+	   });*/
+	   
+	   Menu.btnCalcul.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent event) {
+			   cl.show(content, listContent[5]);
+		   }
+	   });
 
 	}	
 

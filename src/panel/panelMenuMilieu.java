@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import bouton.btnBase;
+import bouton.btnCalculette;
 import bouton.btnContact;
 import bouton.btnImage;
 import bouton.btnPizza;
@@ -23,6 +24,7 @@ public class panelMenuMilieu extends JPanel
 	public btnImage btnImage = new btnImage();
 	public btnPizza btnContacts2 = new btnPizza();
 	private btnBase btnEteindre = new btnBase("images/eteindre.png");
+	public btnCalculette btnCalcul = new btnCalculette();
 	
 	public panelMenuMilieu() 
 	{
@@ -32,6 +34,7 @@ public class panelMenuMilieu extends JPanel
 		milieu.add(btnImage);
 		milieu.add(btnContacts2);
 		milieu.add(btnEteindre);
+		milieu.add(btnCalcul);
 		
 		add(milieu,BorderLayout.CENTER);
 		
