@@ -12,8 +12,11 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -48,59 +51,61 @@ import fenetre.MaFrame;
 
 public class panelContact extends JPanel 
 {
-	//bouton de validation et de retour lors de l'ajout d'un client (ajouter la suppression)
-	public btnBase ok = new btnBase("images/validate.png");
+	public buttonok ok = new buttonok(this);
 	public btnBase retour = new btnBase("images/Retour.png");
 	//Permet de rentrer un nouveau contact
 	private JLabel Nom = new JLabel("Nom :");
-	private JTextField nom = new JTextField();
+	JTextField nom = new JTextField();
 	private JLabel Prenom = new JLabel("Prenom :");
-    private JTextField prenom = new JTextField();
+    JTextField prenom = new JTextField();
     private JLabel Numero = new JLabel("Numero :");
-    private JTextField numero = new JTextField();
+    JTextField numero = new JTextField();
     private JLabel Adresse = new JLabel("Adresse :");
-    private JTextField adresse = new JTextField();
+    JTextField adresse = new JTextField();
     private JLabel Mail = new JLabel("Mail : ");
-    private JTextField mail = new JTextField();
+    JTextField mail = new JTextField();
+    
+    
+  //bouton et texte affiché dans la page principale contact avec la liste des contacts
+  	public btnBase ajout = new btnBase("images/add.png");
+  	JLabel text = new JLabel("Ajouter un contact");
+  	
+  	//panel de base d'affichage
+  	private JPanel haut = new JPanel();
+  	private JPanel bas = new JPanel();
+  	//Panel du listener du bouton ajout
+  	private JPanel pane = new JPanel(new GridLayout(6,2));
+  	//Panel d'affichage de la liste
+  	ArrayList<Contact> contacts = new ArrayList<Contact>();
+  	// private JPanel panelListe = new JPanel(new GridLayout(contacts.size(),1));
+  
 
-	//bouton et texte affiché dans la page principale contact avec la liste des contacts
-	public btnBase ajout = new btnBase("images/add.png");
-	private JLabel text = new JLabel("Ajouter un contact");
-	
-	//panel de base d'affichage
-	private JPanel haut = new JPanel();
-	private JPanel bas = new JPanel();
-	//Panel du listener du bouton ajout
-	private JPanel pane = new JPanel(new GridLayout(6,2));
-	//Panel d'affichage de la liste
-	private ArrayList<Contact> contacts = new ArrayList<Contact>();
-	
-	
-    //CardLayout + panel conteneur qui va changer les fenêtre selon l'action de l'utilisateur (ajout, retour, etc)
+  	
+  	//CardLayout + panel conteneur qui va changer les fenêtre selon l'action de l'utilisateur (ajout, retour, etc)
     CardLayout CardLayoutContact = new CardLayout();
 	String[] listContent = {"liste", "ajout","affiche"};
 	JPanel base = new JPanel();
 	JPanel north= new JPanel();
 	JPanel affiche = new JPanel();
-	
+	JPanel center= new JPanel();
 	
 	public panelContact() {
-		
+		center.setLayout(new BoxLayout(center,BoxLayout.PAGE_AXIS));
 		text.setFont(new Font("Arial", Font.BOLD, 40));
 		setLayout(new BorderLayout());
 		north.add(text);
 		north.add(ajout);
 		add(north,BorderLayout.NORTH);
-
-		JPanel center= new JPanel();
 		
 		base.setLayout(CardLayoutContact);
 		setBackground(Color.WHITE);
 		base.add(center, listContent[0]);
 		base.add(pane, listContent[1]);
 		base.add(affiche,listContent[2]);
+		
 		add(base,BorderLayout.CENTER);
 		
+		   
 		
 		ajout.addActionListener(new ActionListener(){
 			   public void actionPerformed(ActionEvent event){				
@@ -118,6 +123,7 @@ public class panelContact extends JPanel
 						pane.add(mail);
 						pane.add(ok);
 						pane.add(retour);
+					   
 
 						CardLayoutContact.show(base, listContent[1]);
 						
@@ -128,136 +134,138 @@ public class panelContact extends JPanel
 								north.add(text);
 								north.add(ajout);
 								add(north,BorderLayout.NORTH);
+							
 								CardLayoutContact.show(base, listContent[0]);
 				      }
-			        });
-					   //En cliquant sur valider, on revient sur la page d'affichage des contacts avec le nouveau contact intégré
-					   ok.addActionListener(new ActionListener() {
-						   public void actionPerformed(ActionEvent event) {
-							    north.add(text);
-								north.add(ajout);
-								add(north,BorderLayout.NORTH);
-								
-							    addContact();
-							   
-							   
-							    CardLayoutContact.show(base, listContent[0]);
-						   }
-					   });
-				   }
-		});
-
+			        });	
 	}
+    
+});
+		
+		
+		
+	}
+	public void afficheContact() {
+		
+		JButton a = new JButton();
+		a.setBackground(Color.PINK);
+	//	deSerializeObject();
+		
+		System.out.println("afficher");
+		int v=contacts.size();
+		for(int i=0; i<v;i++) {
+			a.setText(contacts.get(i).getNom()+" "+contacts.get(i).getPrenom());
+			a.setFont(new Font("Arial", Font.BOLD, 30));
+			center.add(a);
+			CardLayoutContact.show(base, listContent[0]);
+			
+			a.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent event) {
+					north.removeAll();
+					affiche.setLayout(new GridLayout(6,3));
+					
+					//les boutons apparaissent plusieurs fois si on créé plusieurs contacts.
+					btnBase modifier = new btnBase();
+					modifier.setText("Modifier");
+					btnBase delete = new btnBase("images/delete.png");
+					
+					affiche.add(Nom);
+					affiche.add(Prenom);
+					affiche.add(Numero);
+					affiche.add(Adresse);
+					affiche.add(Mail);
+					affiche.add(modifier);
+					affiche.add(delete);
+					affiche.add(retour);
+					
+					CardLayoutContact.show(base, listContent[2]);
+					
+					retour.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent event){				
+							
+							north.add(text);
+							north.add(ajout);
+							add(north,BorderLayout.NORTH);
+							CardLayoutContact.show(base, listContent[0]);
+			      }
+		        });	
+				}
+			});
+	}
+	}
+
+	
+
 	//Enregistre les contacts créés
-	public void serializeObject() 
-	{
-		try 
+		public void serializeObject() 
 		{
-			FileOutputStream FichierContact = new FileOutputStream("Serialize/contact.ser");
-			ObjectOutputStream OutputContact = new ObjectOutputStream(FichierContact);
-			OutputContact.writeObject(contacts);
-			OutputContact.flush();
-			OutputContact.close();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-	}
-	// Charge les contacts
-	public void deSerializeObject() 
-	{
-		try 
-		{
-			FileInputStream FichierContact = new FileInputStream("Serialize/contact.ser");
-			ObjectInputStream InputContact = new ObjectInputStream(FichierContact);
-			contacts = (ArrayList<Contact>) InputContact.readObject();
-			InputContact.close();
-		} 
-		catch (IOException e) 
-		{
-			contacts = new ArrayList<Contact>();
-		} 
-		catch (ClassNotFoundException e) 
-		{
-			e.printStackTrace();
-
-		}
-	}
-	//Ajoute le contact dans la liste et l'écrit dans un fichier
-	public void addContact() {
-		
-		Contact test = new Contact(nom.getText(), prenom.getText(), numero.getText(), adresse.getText(), mail.getText());
-		contacts.add(test);
-		serializeObject();
-		
-	}
-	
-	// vraiment utile ? pas mieux de faire un panel gridlayout de la taille de l'arrayList avec une taille définie de bouton et une scrollbar
-	class ContactList extends JPanel {
-		private JPanel panelListe = new JPanel();
-		private JScrollPane scroll = new JScrollPane(panelListe);
-
-		/**
-		 * Constructeur de la liste des contacts
-		 * @author Rafael Peixoto
-		 */
-		public ContactList() 
-		{
-			panelListe.setLayout(new BoxLayout(panelListe, BoxLayout.Y_AXIS));
-			afficheContact();
-		}
-	
-		//Modifie la liste de contact
-		public void updateContact() {
-		
-		
-		}
-		
-		//Modifie le contact
-		private void modifyContact(Contact contact) {
-		
-			contacts.set(contacts.indexOf(contact), contact);
-			updateContact();
-		}
-		
-		//Supprime le contact
-		private void delete(Contact contact) {
-			contacts.remove(contact);
-			updateContact();
-		}
-	
-		//Affiche les contacts sous forme de bouton en nom prénom
-		public void afficheContact() {
-		
-			btnBase contact;
-		
-			for(int i=0; i<contacts.size();i++) {
-				contact = new btnBase(contacts.get(i).getNom()+" "+contacts.get(i).getPrenom());
-				panelListe.add(contact);
-				contact.setBackground(Color.BLACK);
-				contact.setFont(new Font("Arial", Font.BOLD, 60));
-		}
-		
-		
-		ContactList liste = new ContactList();
-		liste.setLayout(new GridLayout(contacts.size(),1));
-		liste.add(panelListe);
-		this.add(liste);
-		
-		
-		/*contact.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				
-				JPanel affiche = new JPanel();
-				JLabel infos = new JLabel();
-				CardLayoutContact.show(base, listContent[2]);
-				
+			try 
+			{
+				FileOutputStream FichierContact = new FileOutputStream("Serialize/contact.ser");
+				ObjectOutputStream OutputContact = new ObjectOutputStream(FichierContact);
+				OutputContact.writeObject(contacts);
+				OutputContact.flush();
+				OutputContact.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
 			}
-		});*/
+		}
+		// Charge les contacts
+		public void deSerializeObject() 
+		{
+			try 
+			{
+				FileInputStream FichierContact = new FileInputStream("Serialize/contact.ser");
+				ObjectInputStream InputContact = new ObjectInputStream(FichierContact);
+				contacts = (ArrayList<Contact>) InputContact.readObject();
+				InputContact.close();
+			} 
+			catch (IOException e) 
+			{
+				contacts = new ArrayList<Contact>();
+			} 
+			catch (ClassNotFoundException e) 
+			{
+				e.printStackTrace();
+
+			}
+		}
+class buttonok extends JButton implements ActionListener {
+    
+  panelContact pc;
+
+	buttonok(panelContact pc)
+	{
+		this.pc=pc;
+		Icon valide = new ImageIcon("images/validate.png");
+		setIcon(valide);
+		addActionListener(this);
+		setFocusPainted(false);
+		setOpaque(false);
+		setContentAreaFilled(false);
+		setBorderPainted(false);
+}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		pc.north.add(pc.text);
+		pc.north.add(pc.ajout);
+		pc.add(pc.north,BorderLayout.NORTH);
+		pc.contacts.add(new Contact(pc.nom.getText(), pc.prenom.getText(), pc.numero.getText(), pc.adresse.getText(), pc.mail.getText()));
+		pc.afficheContact();
+		serializeObject();
+		nom.setText("");
+		prenom.setText("");
+		numero.setText("");
+		adresse.setText("");
+		mail.setText("");
+		
+	
+		//	
 	}
 	}
 }
-	
-	     
 	

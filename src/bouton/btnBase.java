@@ -21,7 +21,7 @@ public class btnBase extends JButton
 	
 	public btnBase(Contact contact) {
 		
-		definitionBtn();
+		//definitionBtn();
 		setBorderPainted(true);
 		
 	}
