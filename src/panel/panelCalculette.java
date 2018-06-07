@@ -48,6 +48,7 @@ public class panelCalculette extends JPanel {
     //on initialise l'écran a 0
     ecran = new JLabel("0");
     ecran.setFont(police);
+    ecran.setForeground(Color.BLACK);
     //On aligne les informations à droite dans le JLabel
     ecran.setHorizontalAlignment(JLabel.RIGHT);
     JPanel operateur = new JPanel();      
@@ -55,7 +56,10 @@ public class panelCalculette extends JPanel {
     JPanel chiffre = new JPanel();
     chiffre.setPreferredSize(new Dimension(165, 450));
     JPanel panEcran = new JPanel();
-    panEcran.setPreferredSize(new Dimension(220, 75));
+    panEcran.setPreferredSize(new Dimension(380, 75));
+    panEcran.setBackground(Color.WHITE);
+    
+    
     
     //création des boutons personnalisés
     tab_button[0]=new btnBase("images/one.png");

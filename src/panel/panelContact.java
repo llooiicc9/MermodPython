@@ -64,6 +64,8 @@ public class panelContact extends JPanel
     JTextField adresse = new JTextField();
     private JLabel Mail = new JLabel("Mail : ");
     JTextField mail = new JTextField();
+    private JLabel Photo = new JLabel("Photo : ");
+    btnBase photo = new btnBase("images/Images.png");
     
     
   //bouton et texte affiché dans la page principale contact avec la liste des contacts
@@ -74,16 +76,16 @@ public class panelContact extends JPanel
   	private JPanel haut = new JPanel();
   	private JPanel bas = new JPanel();
   	//Panel du listener du bouton ajout
-  	private JPanel pane = new JPanel(new GridLayout(6,2));
+  	private JPanel pane = new JPanel(new GridLayout(7,2));
   	//Panel d'affichage de la liste
   	ArrayList<Contact> contacts = new ArrayList<Contact>();
-  	// private JPanel panelListe = new JPanel(new GridLayout(contacts.size(),1));
+  	panelImage gallerie = new panelImage();
   
 
   	
   	//CardLayout + panel conteneur qui va changer les fenêtre selon l'action de l'utilisateur (ajout, retour, etc)
     CardLayout CardLayoutContact = new CardLayout();
-	String[] listContent = {"liste", "ajout","affiche"};
+	String[] listContent = {"liste", "ajout","affiche","gallerie"};
 	JPanel base = new JPanel();
 	JPanel north= new JPanel();
 	JPanel affiche = new JPanel();
@@ -102,6 +104,7 @@ public class panelContact extends JPanel
 		base.add(center, listContent[0]);
 		base.add(pane, listContent[1]);
 		base.add(affiche,listContent[2]);
+		base.add(gallerie, listContent[3]);
 		
 		add(base,BorderLayout.CENTER);
 		
@@ -121,11 +124,21 @@ public class panelContact extends JPanel
 						pane.add(adresse);
 						pane.add(Mail);
 						pane.add(mail);
+						pane.add(Photo);
+						pane.add(photo);
 						pane.add(ok);
 						pane.add(retour);
 					   
 
 						CardLayoutContact.show(base, listContent[1]);
+						
+						photo.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent event) {
+								
+								
+								CardLayoutContact.show(base, listContent[3]);
+							}
+						});
 						
 						//En cliquant sur retour on revient à la page d'affichage des contacts
 					    retour.addActionListener(new ActionListener(){
@@ -255,7 +268,7 @@ class buttonok extends JButton implements ActionListener {
 		pc.north.add(pc.text);
 		pc.north.add(pc.ajout);
 		pc.add(pc.north,BorderLayout.NORTH);
-		pc.contacts.add(new Contact(pc.nom.getText(), pc.prenom.getText(), pc.numero.getText(), pc.adresse.getText(), pc.mail.getText()));
+		pc.contacts.add(new Contact(pc.nom.getText(), pc.prenom.getText(), pc.numero.getText(), pc.adresse.getText(), pc.mail.getText(),pc.photo.getText()));
 		pc.afficheContact();
 		serializeObject();
 		nom.setText("");
