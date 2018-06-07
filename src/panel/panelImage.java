@@ -55,8 +55,11 @@ public class panelImage extends JPanel
 	private JButton btnAdd = new JButton("Add");
 	private JButton btnRetour = new btnBase("images/Retour.png");
 	private JButton btnDelete = new btnBase("images/delete.png");
+	private JButton btnContact = new btnBase("images/contactImage.png");
 	private String chemin="images/Gallerie";
 	private String ImgDel ="";
+	
+	public String nomContact="";
 	
 	CardLayout CardLayoutGallerie = new CardLayout();
 	JPanel panelContent = new JPanel();
@@ -124,7 +127,7 @@ public class panelImage extends JPanel
 		
 		if(dossiertest.isDirectory())
 		{
-			System.out.println("Nombre de photo dans la galerie : "+dossiertest.list().length);
+			System.out.println("Nombre de photos dans la galerie : "+dossiertest.list().length);
 			File list[] = dossiertest.listFiles();
 			for (int i = 0; i < list.length; i++) 
 			{
@@ -205,6 +208,13 @@ public class panelImage extends JPanel
 			PanelImgAgrandie.add(imageAagrandir,BorderLayout.CENTER);
 			PanelImgAgrandie.add(btnRetour,BorderLayout.SOUTH);
 			PanelImgAgrandie.add(btnDelete,BorderLayout.SOUTH);
+			if (nomContact!="") 
+			{
+				System.out.println(nomContact);
+			}
+			else {
+				PanelImgAgrandie.add(btnContact,BorderLayout.SOUTH);
+			}
 			
 			CardLayoutGallerie.next(panelContent);
 		}
