@@ -135,7 +135,7 @@ public class panelContact extends JPanel
 						photo.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent event) {
 								
-								
+								gallerie.nomContact = nom.getText();
 								CardLayoutContact.show(base, listContent[3]);
 							}
 						});
