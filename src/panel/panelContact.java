@@ -94,7 +94,7 @@ public class panelContact extends JPanel
 	
 	public panelContact() {
 		center.setLayout(new BoxLayout(center,BoxLayout.PAGE_AXIS));
-		text.setFont(new Font("Arial", Font.BOLD, 40));
+		text.setFont(new Font("Arial", Font.ROMAN_BASELINE, 40));
 		setLayout(new BorderLayout());
 		north.add(text);
 		north.add(ajout);
@@ -185,11 +185,10 @@ public class panelContact extends JPanel
 				public void actionPerformed(ActionEvent event) {
 					north.removeAll();
 					affiche.removeAll();
-					affiche.setLayout(new GridLayout(6,3));
+					affiche.setLayout(new GridLayout(7,3));
 					
 					//les boutons apparaissent plusieurs fois si on créé plusieurs contacts.
-					btnBase modifier = new btnBase();
-					modifier.setText("Modifier");
+					btnBase modifier = new btnBase("images/save.png");
 					btnBase delete = new btnBase("images/delete.png");
 					
 					affiche.add(Nom);
@@ -197,6 +196,7 @@ public class panelContact extends JPanel
 					affiche.add(Numero);
 					affiche.add(Adresse);
 					affiche.add(Mail);
+					affiche.add(Photo);
 					affiche.add(modifier);
 					affiche.add(delete);
 					affiche.add(retour);

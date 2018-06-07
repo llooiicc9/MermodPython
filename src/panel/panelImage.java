@@ -52,7 +52,7 @@ public class panelImage extends JPanel
 {
 	private JPanel gridPanelGallerie = new JPanel(new GridLayout(0, 3, 7, 7));
 	private JPanel PanelImgAgrandie = new JPanel();
-	private JButton btnAdd = new JButton("Add");
+	private btnBase btnAdd = new btnBase("images/addPicture.png");
 	private JButton btnRetour = new btnBase("images/Retour.png");
 	private JButton btnDelete = new btnBase("images/delete.png");
 	public JButton btnContact = new btnBase("images/contactImage.png");

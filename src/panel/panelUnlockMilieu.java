@@ -46,15 +46,14 @@ public class panelUnlockMilieu extends JPanel
 		timerDate.start();
 		date.setHorizontalAlignment(JLabel.CENTER);
 		date.setForeground(Color.WHITE);
-		date.setFont(new Font("Arial", Font.BOLD, 60));
+		date.setFont(new Font("Arial", Font.ROMAN_BASELINE, 50));
 		
-		//Boutton
+		//Bouton
 		setLayout(new BorderLayout());
 		add(bas);
 		bas.setLayout(new BorderLayout());
 		btnunlock.setBorder(new EmptyBorder(0, 0, 30, 0));
 		
-		//add(backgroundImage);
 		add(date,BorderLayout.NORTH);
 		add(btnunlock,BorderLayout.SOUTH);	
 

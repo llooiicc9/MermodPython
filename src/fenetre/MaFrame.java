@@ -97,12 +97,6 @@ public class MaFrame extends JFrame
 		      }
 	        });
 	   
-	  /* Menu.btnContacts2.addActionListener(new ActionListener() {
-		   public void actionPerformed(ActionEvent event) {
-			   cl.show(content, listContent[4]);
-		   }
-	   });*/
-	   
 	   Menu.btnCalcul.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent event) {
 			   cl.show(content, listContent[5]);
