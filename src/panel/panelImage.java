@@ -55,7 +55,7 @@ public class panelImage extends JPanel
 	private JButton btnAdd = new JButton("Add");
 	private JButton btnRetour = new btnBase("images/Retour.png");
 	private JButton btnDelete = new btnBase("images/delete.png");
-	private JButton btnContact = new btnBase("images/contactImage.png");
+	public JButton btnContact = new btnBase("images/contactImage.png");
 	private String chemin="images/Gallerie";
 	private String ImgDel ="";
 	
@@ -185,6 +185,11 @@ public class panelImage extends JPanel
 		monFichier.delete();
 	}
 	
+	public String getImageContact()
+	{
+		return ImgDel;
+	}
+	
 	/**
 	 Quand on clique sur une image ça l'agrandit
 	 * @author Loïc
@@ -203,6 +208,7 @@ public class panelImage extends JPanel
 		{
 			//Defini le chemin de l'image à supprimer
 			ImgDel = imageAagrandir.CheminImage;
+			
 			//Remet a 0 le panel
 			PanelImgAgrandie.removeAll();			
 			PanelImgAgrandie.add(imageAagrandir,BorderLayout.CENTER);
@@ -210,11 +216,9 @@ public class panelImage extends JPanel
 			PanelImgAgrandie.add(btnDelete,BorderLayout.SOUTH);
 			if (nomContact!="") 
 			{
-				System.out.println(nomContact);
-			}
-			else {
 				PanelImgAgrandie.add(btnContact,BorderLayout.SOUTH);
 			}
+
 			
 			CardLayoutGallerie.next(panelContent);
 		}

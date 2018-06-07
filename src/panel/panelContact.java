@@ -52,6 +52,7 @@ import fenetre.MaFrame;
 public class panelContact extends JPanel 
 {
 	public buttonok ok = new buttonok(this);
+	private String lienImage = "";
 	public btnBase retour = new btnBase("images/Retour.png");
 	//Permet de rentrer un nouveau contact
 	private JLabel Nom = new JLabel("Nom :");
@@ -137,6 +138,14 @@ public class panelContact extends JPanel
 								
 								gallerie.nomContact = nom.getText();
 								CardLayoutContact.show(base, listContent[3]);
+								
+								gallerie.btnContact.addActionListener(new ActionListener(){
+									   public void actionPerformed(ActionEvent event){	
+										   	photo.setText(gallerie.getImageContact());
+									        CardLayoutContact.show(base, listContent[1]);
+									      }
+								        });
+								
 							}
 						});
 						
@@ -276,10 +285,14 @@ class buttonok extends JButton implements ActionListener {
 		numero.setText("");
 		adresse.setText("");
 		mail.setText("");
-		
 	
 		//	
 	}
+	}
+
+	public void setLienImage(String lienImage) {
+		this.lienImage = lienImage;
+		
 	}
 }
 	
