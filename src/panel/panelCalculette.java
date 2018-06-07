@@ -44,18 +44,18 @@ public class panelCalculette extends JPanel {
       
   private void initComposant(){
     //On définit la police d'écriture à utiliser pour l'affichage du résultat
-    Font police = new Font("Arial", Font.BOLD, 40);
+    Font police = new Font("Arial", Font.BOLD, 60);
     //on initialise l'écran a 0
     ecran = new JLabel("0");
     ecran.setFont(police);
     //On aligne les informations à droite dans le JLabel
-    ecran.setHorizontalAlignment(JLabel.CENTER);
+    ecran.setHorizontalAlignment(JLabel.RIGHT);
     JPanel operateur = new JPanel();      
-    operateur.setPreferredSize(new Dimension(50, 220));
+    operateur.setPreferredSize(new Dimension(50, 440));
     JPanel chiffre = new JPanel();
-    chiffre.setPreferredSize(new Dimension(165, 225));
+    chiffre.setPreferredSize(new Dimension(165, 450));
     JPanel panEcran = new JPanel();
-    panEcran.setPreferredSize(new Dimension(220, 30));
+    panEcran.setPreferredSize(new Dimension(220, 75));
     
     //création des boutons personnalisés
     tab_button[0]=new btnBase("images/one.png");
@@ -82,6 +82,7 @@ public class panelCalculette extends JPanel {
     	tab_button[i].setName(""+a);
     }
     tab_button[9].setName(""+0);
+    tab_button[10].setName(".");
 
 
     //On parcourt le tableau avec un switch pour ajouter les listener

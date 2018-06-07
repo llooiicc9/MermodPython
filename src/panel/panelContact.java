@@ -162,6 +162,7 @@ public class panelContact extends JPanel
 			a.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent event) {
 					north.removeAll();
+					affiche.removeAll();
 					affiche.setLayout(new GridLayout(6,3));
 					
 					//les boutons apparaissent plusieurs fois si on créé plusieurs contacts.
