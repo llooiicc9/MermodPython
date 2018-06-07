@@ -22,7 +22,6 @@ public class panelMenuMilieu extends JPanel
 	private panelBase milieu = new panelBase();
 	public btnContact btnContacts = new btnContact();
 	public btnImage btnImage = new btnImage();
-	public btnPizza btnContacts2 = new btnPizza();
 	private btnBase btnEteindre = new btnBase("images/eteindre.png");
 	public btnCalculette btnCalcul = new btnCalculette();
 	
@@ -32,9 +31,9 @@ public class panelMenuMilieu extends JPanel
 		
 		milieu.add(btnContacts);		
 		milieu.add(btnImage);
-		milieu.add(btnContacts2);
-		milieu.add(btnEteindre);
 		milieu.add(btnCalcul);
+		milieu.add(btnEteindre);
+	
 		
 		add(milieu,BorderLayout.CENTER);
 		

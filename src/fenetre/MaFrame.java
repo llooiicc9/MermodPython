@@ -15,7 +15,6 @@ import bouton.btnUnlock;
 import panel.panelBas;
 import panel.panelCalculette;
 import panel.panelContact;
-import panel.panelDemineur;
 import panel.panelHaut;
 import panel.panelImage;
 import panel.panelMenuMilieu;
@@ -34,7 +33,7 @@ public class MaFrame extends JFrame
 	private panelMenuMilieu Menu = new panelMenuMilieu();
 	private panelContact contacts = new panelContact();
 	private panelImage gallerieImage = new panelImage();
-	//private panelDemineur demineur = new panelDemineur();
+	
 	private panelCalculette calcul = new panelCalculette();
 	
 

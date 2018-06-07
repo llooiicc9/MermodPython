@@ -11,14 +11,16 @@ public class Contact implements Serializable{
 	private String telephone;
 	private String adresse;
 	private String mail;
+	private String cheminImage;
 	
-	public Contact(String nom, String prenom, String telephone, String adresse, String mail) {
+	public Contact(String nom, String prenom, String telephone, String adresse, String mail, String cheminImage) {
 		
 		this.nom=nom;
 		this.prenom=prenom;
 		this.telephone=telephone;
 		this.adresse=adresse;
 		this.mail=mail;
+		this.cheminImage=cheminImage;
 	}
 
 	public String getNom() {
@@ -59,6 +61,12 @@ public class Contact implements Serializable{
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+	public String getcheminImage() {
+		return cheminImage;
+	}
+	public void setcheminImage(String cheminImage) {
+		this.cheminImage=cheminImage;
 	}
 	
 }
