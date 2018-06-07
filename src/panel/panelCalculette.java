@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener; 
 import javax.swing.BorderFactory;
@@ -44,7 +47,7 @@ public class panelCalculette extends JPanel {
       
   private void initComposant(){
     //On définit la police d'écriture à utiliser pour l'affichage du résultat
-    Font police = new Font("Arial", Font.BOLD, 60);
+    Font police = new Font("Arial", Font.BOLD, 90);
     //on initialise l'écran a 0
     ecran = new JLabel("0");
     ecran.setFont(police);
@@ -56,7 +59,7 @@ public class panelCalculette extends JPanel {
     JPanel chiffre = new JPanel();
     chiffre.setPreferredSize(new Dimension(165, 450));
     JPanel panEcran = new JPanel();
-    panEcran.setPreferredSize(new Dimension(380, 75));
+    panEcran.setPreferredSize(new Dimension(400, 120));
     panEcran.setBackground(Color.WHITE);
     
     
@@ -128,11 +131,99 @@ public class panelCalculette extends JPanel {
         default :
           //Par défaut, ce sont les premiers éléments du tableau
           //donc des chiffres, on affecte alors le bon listener
-          chiffre.add(tab_button[i]);
           tab_button[i].addActionListener(new ChiffreListener());
           break;
       }
     }
+    
+    	operateur.setLayout(new GridBagLayout());
+    	GridBagConstraints gc2 = new GridBagConstraints();
+    	gc2.insets = new Insets(0,0,0,0);
+    	
+    	gc2.weightx=1;
+    	gc2.weighty=5;
+    	
+    	gc2.gridy = 0;
+    	gc2.gridx = 0;
+    	operateur.add(tab_button[12], gc2);
+    	
+    	gc2.gridy = 1;
+    	gc2.gridx = 0;
+    	operateur.add(tab_button[13], gc2);
+    	
+    	gc2.gridy = 2;
+    	gc2.gridx = 0;
+    	operateur.add(tab_button[14], gc2);
+    	
+    	gc2.gridy = 3;
+    	gc2.gridx = 0;
+    	operateur.add(tab_button[15], gc2);
+    	
+    	gc2.gridy = 4;
+    	gc2.gridx = 0;
+    	operateur.add(tab_button[16], gc2);
+    	
+    	
+    	
+ 	    chiffre.setLayout(new GridBagLayout());
+ 	    //Le gridBagConstraints va définir la position et la taille des éléments 
+ 		GridBagConstraints gc = new GridBagConstraints();
+ 		gc.fill = GridBagConstraints.BOTH;
+ 		//insets définir la marge entre les composant new Insets(margeSupérieure, margeGauche, margeInférieur, margeDroite)
+ 		gc.insets = new Insets(0, 0, 0, 0);
+ 		
+ 		//Défini les case en x et y
+ 		gc.weightx = 3;
+ 		gc.weighty = 4;
+ 		
+ 		gc.gridy = 0;
+ 		gc.gridx = 0;
+ 		chiffre.add(tab_button[0], gc);
+ 		
+ 		gc.gridy = 0;
+ 		gc.gridx = 1;
+ 		chiffre.add(tab_button[1], gc);
+ 		
+ 		gc.gridy = 0;
+ 		gc.gridx = 2;
+ 		chiffre.add(tab_button[2], gc);
+ 		
+ 		gc.gridy = 1;
+ 		gc.gridx = 0;
+ 		chiffre.add(tab_button[3], gc);
+ 		
+ 		gc.gridy = 1;
+ 		gc.gridx = 1;
+ 		chiffre.add(tab_button[4], gc);
+ 		
+ 		gc.gridy = 1;
+ 		gc.gridx = 2;
+ 		chiffre.add(tab_button[5], gc);
+ 		
+ 		gc.gridy = 2;
+ 		gc.gridx = 0;
+ 		chiffre.add(tab_button[6], gc);
+ 		
+ 		gc.gridy = 2;
+ 		gc.gridx = 1;
+ 		chiffre.add(tab_button[7], gc);
+ 		
+ 		gc.gridy = 2;
+ 		gc.gridx = 2;
+ 		chiffre.add(tab_button[8], gc);
+ 		
+ 		gc.gridy = 3;
+ 		gc.gridx = 0;
+ 		chiffre.add(tab_button[9], gc);
+ 		
+ 		gc.gridy = 3;
+ 		gc.gridx = 1;
+ 		chiffre.add(tab_button[10], gc);
+ 		
+ 		gc.gridy = 3;
+ 		gc.gridx = 2;
+ 		chiffre.add(tab_button[11], gc);
+ 		
     panEcran.add(ecran,BorderLayout.NORTH);
     panEcran.setBorder(BorderFactory.createLineBorder(Color.black));
     container.add(panEcran, BorderLayout.NORTH);
