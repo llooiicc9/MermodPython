@@ -41,10 +41,6 @@ public class MaFrame extends JFrame
 	{
 		super("");
 		
-		
-	 
-	    
-		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setUndecorated(true);
 		setLocation(500, 200);

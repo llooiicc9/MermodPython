@@ -224,8 +224,7 @@ public class panelContact extends JPanel
 							
 							afficheContact();
 							CardLayoutContact.show(base, listContent[0]);
-							
-							
+
 						}
 					});
 					retour.addActionListener(new ActionListener(){
