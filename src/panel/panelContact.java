@@ -170,7 +170,8 @@ public class panelContact extends JPanel
 	public void afficheContact() {
 		
 		JButton a = new JButton();
-		a.setBackground(Color.PINK);
+		a.setBackground(new Color(187, 174, 152));
+		a.setSize(100, 50);
 	//	deSerializeObject();
 		
 		System.out.println("afficher");
@@ -178,6 +179,12 @@ public class panelContact extends JPanel
 		for(int i=0; i<v;i++) {
 			a.setText(contacts.get(i).getNom()+" "+contacts.get(i).getPrenom());
 			a.setFont(new Font("Arial", Font.BOLD, 30));
+			
+			if(i%2==0) {
+				a.setBackground(new Color(254, 231, 240));
+			} else {
+				a.setBackground(new Color(251, 252, 250));
+			}
 			center.add(a);
 			CardLayoutContact.show(base, listContent[0]);
 			
