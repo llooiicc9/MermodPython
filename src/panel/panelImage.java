@@ -3,6 +3,7 @@ package panel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -72,11 +73,12 @@ public class panelImage extends JPanel
 	 */
 	public panelImage() 
 	{
-		//JScrollPane scroll = new JScrollPane(gridPanelGallerie); -- si on veut mettre une scrollbar
+		//JScrollPane scroll = new JScrollPane(gridPanelGallerie, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // si on veut mettre une scrollbar
 		//On définit le layout
 		panelContent.setLayout(CardLayoutGallerie);
 		
 	    //Permet de changer de panel
+		//panelContent.add(scroll, listContent[0]);
 		panelContent.add(gridPanelGallerie, listContent[0]);
 		panelContent.add(PanelImgAgrandie, listContent[1]);
 	    
@@ -132,8 +134,11 @@ public class panelImage extends JPanel
 			for (int i = 0; i < list.length; i++) 
 			{
 				//System.out.println(list[i].getName());
-			
+				
 				imageGallerie = new btnBase(chemin+"/"+list[i].getName());
+				//Définis la taille souhaitée au cas ou une image est trop grande cela la redimensionne
+				imageGallerie.setPreferredSize(new Dimension(450, 500));
+				//Ajoute l'actionListener qui permet d'agrandire au images
 				imageGallerie.addActionListener(new AgrandirImg(imageGallerie));
 				gridPanelGallerie.add(imageGallerie);
 			}
@@ -210,17 +215,19 @@ public class panelImage extends JPanel
 			ImgDel = imageAagrandir.CheminImage;
 			
 			//Remet a 0 le panel
-			PanelImgAgrandie.removeAll();			
+			PanelImgAgrandie.removeAll();
 			PanelImgAgrandie.add(imageAagrandir,BorderLayout.CENTER);
 			PanelImgAgrandie.add(btnRetour,BorderLayout.SOUTH);
 			PanelImgAgrandie.add(btnDelete,BorderLayout.SOUTH);
+			
+			//Ajoute le bouton contact quand l'utilisateur vient de l'app contact
 			if (nomContact!="") 
 			{
 				PanelImgAgrandie.add(btnContact,BorderLayout.SOUTH);
 			}
 
-			
-			CardLayoutGallerie.next(panelContent);
+			//Affiche la panel avec une seul image
+			CardLayoutGallerie.show(panelContent, listContent[1]);
 		}
 	}
 
