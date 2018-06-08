@@ -93,6 +93,7 @@ public class panelContact extends JPanel
 	JPanel center= new JPanel();
 	
 	public panelContact() {
+		
 		center.setLayout(new BoxLayout(center,BoxLayout.PAGE_AXIS));
 		text.setFont(new Font("Arial", Font.ROMAN_BASELINE, 40));
 		setLayout(new BorderLayout());
@@ -109,7 +110,7 @@ public class panelContact extends JPanel
 		
 		add(base,BorderLayout.CENTER);
 		
-		   
+		 afficheContact();
 		
 		ajout.addActionListener(new ActionListener(){
 			   public void actionPerformed(ActionEvent event){				
@@ -173,7 +174,7 @@ public class panelContact extends JPanel
 		JButton a = new JButton();
 		a.setBackground(new Color(187, 174, 152));
 		a.setSize(100, 50);
-	//	deSerializeObject();
+		deSerializeObject();
 		
 		System.out.println("afficher");
 		int v=contacts.size();
@@ -237,13 +238,14 @@ public class panelContact extends JPanel
 				OutputContact.writeObject(contacts);
 				OutputContact.flush();
 				OutputContact.close();
+				FichierContact.close();
 			} 
 			catch (IOException e) 
 			{
 				e.printStackTrace();
 			}
 		}
-		// Charge les contacts 
+		// Lis les contacts 
 		public void deSerializeObject() 
 		{
 			try 
@@ -252,14 +254,17 @@ public class panelContact extends JPanel
 				ObjectInputStream InputContact = new ObjectInputStream(FichierContact);
 				contacts = (ArrayList<Contact>) InputContact.readObject();
 				InputContact.close();
+				System.out.println(contacts.get(0));
 			} 
 			catch (IOException e) 
 			{
 				contacts = new ArrayList<Contact>();
+				System.out.println("Erreur");
 			} 
 			catch (ClassNotFoundException e) 
 			{
 				e.printStackTrace();
+				System.out.println("erreur");
 
 			}
 		}
@@ -293,6 +298,7 @@ class buttonok extends JButton implements ActionListener {
 		numero.setText("");
 		adresse.setText("");
 		mail.setText("");
+		photo.setText("");
 	
 		//	
 	}

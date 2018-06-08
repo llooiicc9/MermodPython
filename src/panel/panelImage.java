@@ -136,7 +136,7 @@ public class panelImage extends JPanel
 		
 		if(dossiertest.isDirectory())
 		{
-			System.out.println("Nombre de photos dans la galerie : "+dossiertest.list().length);
+			
 			File list[] = dossiertest.listFiles();
 			
 			//Remet a 0 la taille de la gallerie
