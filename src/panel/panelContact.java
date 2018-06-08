@@ -80,7 +80,7 @@ public class panelContact extends JPanel
   	private JPanel pane = new JPanel(new GridLayout(7,2));
   	//Panel d'affichage de la liste
   	ArrayList<Contact> contacts = new ArrayList<Contact>();
-  	panelImage gallerie = new panelImage();
+  	public panelImage gallerie = new panelImage();
   
 
   	
@@ -137,6 +137,7 @@ public class panelContact extends JPanel
 							public void actionPerformed(ActionEvent event) {
 								
 								gallerie.nomContact = nom.getText();
+								gallerie.afficheImage();
 								CardLayoutContact.show(base, listContent[3]);
 								
 								gallerie.btnContact.addActionListener(new ActionListener(){

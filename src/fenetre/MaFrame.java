@@ -64,20 +64,13 @@ public class MaFrame extends JFrame
 		setSize(450, 800);
 	    getContentPane().add(content, BorderLayout.CENTER);
 	    setVisible(true);
-		
-	    //Passe de lock au menu principal
-	    milieu.btnunlock.addActionListener(new ActionListener(){
-	        public void actionPerformed(ActionEvent event){
-	            //Via cette instruction, on passe au prochain conteneur de la pile
-	            cl.next(content);
-	          }
-	        });
-	    
+ 
 	   //Lance l'application contacts
 	   Menu.btnContacts.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
 			   
 		        cl.show(content, listContent[2]);
+		        contacts.gallerie.afficheImage();
 		      }
 	        });
 	   
@@ -86,6 +79,7 @@ public class MaFrame extends JFrame
 		   public void actionPerformed(ActionEvent event){				
 			   
 		        cl.show(content, listContent[3]);
+		        gallerieImage.afficheImage();
 		      }
 	        });
 	   
