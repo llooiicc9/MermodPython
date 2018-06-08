@@ -53,12 +53,13 @@ public class panelImage extends JPanel
 {
 	private JPanel gridPanelGallerie = new JPanel(new GridLayout(0, 3, 7, 7));
 	private JPanel PanelImgAgrandie = new JPanel();
-	private btnBase btnAdd = new btnBase("images/addPicture.png");
+	private JButton btnAdd = new btnBase("images/addPicture.png");
 	private JButton btnRetour = new btnBase("images/Retour.png");
 	private JButton btnDelete = new btnBase("images/delete.png");
 	public JButton btnContact = new btnBase("images/contactImage.png");
 	private String chemin="images/Gallerie";
 	private String ImgDel ="";
+	private int tailleVerticaleGallerie=0;
 	
 	public String nomContact="";
 	
@@ -72,20 +73,26 @@ public class panelImage extends JPanel
 	 * @author Loïc
 	 */
 	public panelImage() 
-	{
-		//JScrollPane scroll = new JScrollPane(gridPanelGallerie, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // si on veut mettre une scrollbar
-		//On définit le layout
+	{		
+		//On définit le cardLayout pour passé de la gallerie a une image seul
 		panelContent.setLayout(CardLayoutGallerie);
 		
-	    //Permet de changer de panel
-		//panelContent.add(scroll, listContent[0]);
-		panelContent.add(gridPanelGallerie, listContent[0]);
+		//Défini le flowLayout pour la gallerie
+		FlowLayout flGallerie = new FlowLayout( FlowLayout.LEFT, 2, 2 );
+		
+		//Défini la taille de la gallerie
+		gridPanelGallerie.setLayout(flGallerie);
+		
+	    //Ajoute une scroll bar à la gallerie
+		JScrollPane scroll = new JScrollPane(gridPanelGallerie, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // si on veut mettre une scrollbar
+		
+		//Permet de changer de panel
+		panelContent.add(scroll, listContent[0]);
 		panelContent.add(PanelImgAgrandie, listContent[1]);
 	    
-		setLayout(new BorderLayout());
-		
 		afficheImage();
 		
+		setLayout(new BorderLayout());
 		add(btnAdd, BorderLayout.NORTH);
 		add(panelContent, BorderLayout.CENTER);
 		
@@ -131,16 +138,23 @@ public class panelImage extends JPanel
 		{
 			System.out.println("Nombre de photos dans la galerie : "+dossiertest.list().length);
 			File list[] = dossiertest.listFiles();
+			
+			//Remet a 0 la taille de la gallerie
+			tailleVerticaleGallerie=0;
 			for (int i = 0; i < list.length; i++) 
-			{
-				//System.out.println(list[i].getName());
-				
+			{				
 				imageGallerie = new btnBase(chemin+"/"+list[i].getName());
 				//Définis la taille souhaitée au cas ou une image est trop grande cela la redimensionne
-				imageGallerie.setPreferredSize(new Dimension(450, 500));
+				imageGallerie.setPreferredSize(new Dimension(140, 140));
 				//Ajoute l'actionListener qui permet d'agrandire au images
 				imageGallerie.addActionListener(new AgrandirImg(imageGallerie));
 				gridPanelGallerie.add(imageGallerie);
+				
+				//Chaque 3 image ont augemente la taille de la gallerie
+				if (i%3==0) {
+					tailleVerticaleGallerie+=140;
+					gridPanelGallerie.setPreferredSize(new Dimension(400, tailleVerticaleGallerie));
+				}
 			}
 		
 		}
@@ -153,6 +167,7 @@ public class panelImage extends JPanel
 	 */
 	public void addImage()
 	{
+		//Appelle un fileChooser pour rechercher une image dans windows
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Ajouter une image");
 		 
@@ -165,11 +180,13 @@ public class panelImage extends JPanel
 	    if(returnVal == JFileChooser.APPROVE_OPTION) 
 	    { 
     		System.out.println("Ajout du fichier : " + fileChooser.getSelectedFile().getName());
-     	    		
+     	    
+    		//Récupère le chemin de l'image choisie
      		Path cheminBase = Paths.get(fileChooser.getSelectedFile().getPath());
     		Path cheminOuEnregistrer = Paths.get(chemin+"/"+fileChooser.getSelectedFile().getName());
 		   
 			try {
+				//Copie l'image sélectionner dans la gallerie du smartphone
 				Files.copy(cheminBase, cheminOuEnregistrer, StandardCopyOption.REPLACE_EXISTING);
 				afficheImage();
 				
@@ -190,6 +207,11 @@ public class panelImage extends JPanel
 		monFichier.delete();
 	}
 	
+	/**
+	Retourne le chemin de l'image choisie au contact
+	 * @author Loïc
+	 *
+	 */
 	public String getImageContact()
 	{
 		return ImgDel;
@@ -216,6 +238,7 @@ public class panelImage extends JPanel
 			
 			//Remet a 0 le panel
 			PanelImgAgrandie.removeAll();
+			imageAagrandir.setPreferredSize(new Dimension(450, 500));
 			PanelImgAgrandie.add(imageAagrandir,BorderLayout.CENTER);
 			PanelImgAgrandie.add(btnRetour,BorderLayout.SOUTH);
 			PanelImgAgrandie.add(btnDelete,BorderLayout.SOUTH);
