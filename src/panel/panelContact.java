@@ -174,9 +174,7 @@ public class panelContact extends JPanel
 
 		center.removeAll();
 		deSerializeObject();
-		for (int i = 0; i < contacts.size(); i++) {
-		System.out.println(contacts.get(i).getNom());
-		}
+		
 	
 		for(int i=0; i<contacts.size();i++) {
 			a= new JButton();
@@ -184,35 +182,58 @@ public class panelContact extends JPanel
 			a.setName(""+i);
 			a.setFont(new Font("Arial", Font.BOLD, 30));
 			
+			
 			if(i%2==0) {
 				a.setBackground(new Color(254, 231, 240));
 			} else {
 				a.setBackground(new Color(251, 252, 250));
 			}
 			center.add(a);
+		
 			CardLayoutContact.show(base, listContent[0]);
 			
-			
+		
 			a.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent event) {
 					north.removeAll();
 					affiche.removeAll();
-					affiche.setLayout(new GridLayout(7,3));
+					affiche.setLayout(new GridLayout(8,2));
 					
 					btnBase modifier = new btnBase("images/save.png");
 					btnBase delete = new btnBase("images/delete.png");
 					
-					affiche.add(Nom);
-					affiche.add(Prenom);
-					affiche.add(Numero);
-					affiche.add(Adresse);
-					affiche.add(Mail);
+					
+					
+					
+					
+					btnBase photoProfil = new btnBase(contacts.get(getID()).getcheminImage());
+					System.out.println(getID());
+					
 					affiche.add(Photo);
+					affiche.add(photoProfil);
+					affiche.add(Nom);
+					nom.setText(contacts.get(getID()).getNom());
+					affiche.add(nom);
+					affiche.add(Prenom);
+					prenom.setText(contacts.get(getID()).getPrenom());
+					affiche.add(prenom);
+					affiche.add(Numero);
+					numero.setText(contacts.get(getID()).getTelephone());
+					affiche.add(numero);
+					affiche.add(Adresse);
+					adresse.setText(contacts.get(getID()).getAdresse());
+					affiche.add(adresse);
+					affiche.add(Mail);
+					mail.setText(contacts.get(getID()).getMail());
+					affiche.add(mail);
+					
 					affiche.add(modifier);
 					affiche.add(delete);
 					affiche.add(retour);
 					
 					CardLayoutContact.show(base, listContent[2]);
+					
+					
 					
 					delete.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent event) {
@@ -233,20 +254,57 @@ public class panelContact extends JPanel
 							north.add(text);
 							north.add(ajout);
 							add(north,BorderLayout.NORTH);
+							
+							nom.setText("");
+							prenom.setText("");
+							numero.setText("");
+							adresse.setText("");
+							mail.setText("");
+							photo.setText("");
+							
 							CardLayoutContact.show(base, listContent[0]);
 			      }
 		        });	
+					
+				   modifier.addActionListener(new ActionListener() {
+					   public void actionPerformed(ActionEvent event) {
+						   
+						  north.add(text);
+						  north.add(ajout);
+						  add(north,BorderLayout.NORTH);
+						  
+						  modify();
+						  serializeObject();
+						  afficheContact();
+						  
+						  CardLayoutContact.show(base, listContent[0]);
+						  
+						   
+					   }
+				   });
 				}
 			});
+	
+	}}
+	
+	public int getID() {
+		return Integer.parseInt(a.getName());
 	}
+	public void modify() {
+		 
+		contacts.get(getID()).setNom(nom.getText());
+		contacts.get(getID()).setPrenom(prenom.getText());
+		contacts.get(getID()).setAdresse(adresse.getText());
+		contacts.get(getID()).setTelephone(numero.getText());
+		contacts.get(getID()).setMail(mail.getText());
+		serializeObject();
+		
+		//contacts.get(place).setcheminImage(photoProfil.getText());
+		
 	}
-
 	public void delete() {
 		
-		int place = Integer.parseInt(a.getName()); 
-		contacts.remove(place);
-		System.out.println(place);
-		System.out.println(a.getName());
+		contacts.remove(getID());
 		serializeObject();
 		
 	}
