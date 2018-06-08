@@ -67,6 +67,7 @@ public class panelContact extends JPanel
     JTextField mail = new JTextField();
     private JLabel Photo = new JLabel("Photo : ");
     btnBase photo = new btnBase("images/Images.png");
+    JButton a; 
     
     
   //bouton et texte affiché dans la page principale contact avec la liste des contacts
@@ -110,7 +111,7 @@ public class panelContact extends JPanel
 		
 		add(base,BorderLayout.CENTER);
 		
-		 afficheContact();
+		afficheContact();
 		
 		ajout.addActionListener(new ActionListener(){
 			   public void actionPerformed(ActionEvent event){				
@@ -170,16 +171,20 @@ public class panelContact extends JPanel
 		
 	}
 	public void afficheContact() {
+
 		
-		JButton a = new JButton();
-		a.setBackground(new Color(187, 174, 152));
-		a.setSize(100, 50);
+		
+		center.removeAll();
 		deSerializeObject();
-		
-		System.out.println("afficher");
-		int v=contacts.size();
-		for(int i=0; i<v;i++) {
+		for (int i = 0; i < contacts.size(); i++) {
+		System.out.println(contacts.get(i).getNom());
+			
+		}
+	
+		for(int i=0; i<contacts.size();i++) {
+			a= new JButton();
 			a.setText(contacts.get(i).getNom()+" "+contacts.get(i).getPrenom());
+			a.setName(""+i);
 			a.setFont(new Font("Arial", Font.BOLD, 30));
 			
 			if(i%2==0) {
@@ -190,13 +195,13 @@ public class panelContact extends JPanel
 			center.add(a);
 			CardLayoutContact.show(base, listContent[0]);
 			
+			
 			a.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent event) {
 					north.removeAll();
 					affiche.removeAll();
 					affiche.setLayout(new GridLayout(7,3));
 					
-					//les boutons apparaissent plusieurs fois si on créé plusieurs contacts.
 					btnBase modifier = new btnBase("images/save.png");
 					btnBase delete = new btnBase("images/delete.png");
 					
@@ -212,6 +217,20 @@ public class panelContact extends JPanel
 					
 					CardLayoutContact.show(base, listContent[2]);
 					
+					delete.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent event) {
+							north.removeAll();
+							north.add(text);
+							north.add(ajout);
+							add(north,BorderLayout.NORTH);
+							delete();
+							
+							afficheContact();
+							CardLayoutContact.show(base, listContent[0]);
+							
+							
+						}
+					});
 					retour.addActionListener(new ActionListener(){
 						public void actionPerformed(ActionEvent event){				
 							
@@ -226,7 +245,15 @@ public class panelContact extends JPanel
 	}
 	}
 
-	
+	public void delete() {
+		
+		int place = Integer.parseInt(a.getName()); 
+		contacts.remove(place);
+		System.out.println(place);
+		System.out.println(a.getName());
+		serializeObject();
+		
+	}
 
 	//Enregistre les contacts créés
 		public void serializeObject() 
@@ -254,17 +281,17 @@ public class panelContact extends JPanel
 				ObjectInputStream InputContact = new ObjectInputStream(FichierContact);
 				contacts = (ArrayList<Contact>) InputContact.readObject();
 				InputContact.close();
-				System.out.println(contacts.get(0));
+				
 			} 
 			catch (IOException e) 
 			{
 				contacts = new ArrayList<Contact>();
-				System.out.println("Erreur");
+				
 			} 
 			catch (ClassNotFoundException e) 
 			{
 				e.printStackTrace();
-				System.out.println("erreur");
+				
 
 			}
 		}
@@ -291,8 +318,8 @@ class buttonok extends JButton implements ActionListener {
 		pc.north.add(pc.ajout);
 		pc.add(pc.north,BorderLayout.NORTH);
 		pc.contacts.add(new Contact(pc.nom.getText(), pc.prenom.getText(), pc.numero.getText(), pc.adresse.getText(), pc.mail.getText(),pc.photo.getText()));
-		pc.afficheContact();
 		serializeObject();
+		pc.afficheContact();	
 		nom.setText("");
 		prenom.setText("");
 		numero.setText("");

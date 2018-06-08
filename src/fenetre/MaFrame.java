@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -40,23 +41,26 @@ public class MaFrame extends JFrame
 	public MaFrame()
 	{
 		super("");
+		
+		
+	 
+	    
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setUndecorated(true);
+		setLocation(500, 200);
+		setShape(new RoundRectangle2D.Float(0,0,449,799,75,75));
 
-	    //On définit le layout
+		   //On définit le layout
 	    content.setLayout(cl);
 	    //Permet de changer de panel
 	    content.add(milieu, listContent[0]);
 	    content.add(Menu, listContent[1]);
 	    content.add(contacts, listContent[2]);
 	    content.add(gallerieImage, listContent[3]);
-	    //content.add(demineur, listContent[4]);
 	    content.add(calcul,listContent[5]);
 	    
-		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setUndecorated(true);
-		setLocation(500, 200);
-
-		
+	    
 		add(nord,BorderLayout.NORTH);
 		add(sud,BorderLayout.SOUTH);
 		//add(milieu,BorderLayout.CENTER);
