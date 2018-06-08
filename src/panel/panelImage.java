@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.Date;
 
@@ -179,17 +180,17 @@ public class panelImage extends JPanel
 
 	    if(returnVal == JFileChooser.APPROVE_OPTION) 
 	    { 
-    		System.out.println("Ajout du fichier : " + fileChooser.getSelectedFile().getName());
-     	    
+     	    //On récupère l'heure actuel en milisec pour avoir un nom unique pour chaque photo
+    		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    		
     		//Récupère le chemin de l'image choisie
      		Path cheminBase = Paths.get(fileChooser.getSelectedFile().getPath());
-    		Path cheminOuEnregistrer = Paths.get(chemin+"/"+fileChooser.getSelectedFile().getName());
+    		Path cheminOuEnregistrer = Paths.get(chemin+"/"+timestamp.getTime()+fileChooser.getSelectedFile().getName());
 		   
 			try {
 				//Copie l'image sélectionner dans la gallerie du smartphone
 				Files.copy(cheminBase, cheminOuEnregistrer, StandardCopyOption.REPLACE_EXISTING);
 				afficheImage();
-				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}	
