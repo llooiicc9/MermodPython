@@ -247,6 +247,13 @@ public class panelImage extends JPanel
 			if (nomContact!="") 
 			{
 				PanelImgAgrandie.add(btnContact,BorderLayout.SOUTH);
+				
+				btnContact.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){				
+						afficheImage();
+						CardLayoutGallerie.show(panelContent, listContent[0]);
+					}
+				});
 			}
 
 			//Affiche la panel avec une seul image
