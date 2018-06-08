@@ -34,7 +34,6 @@ public class MaFrame extends JFrame
 	private panelMenuMilieu Menu = new panelMenuMilieu();
 	private panelContact contacts = new panelContact();
 	private panelImage gallerieImage = new panelImage();
-	
 	private panelCalculette calcul = new panelCalculette();
 	
 
@@ -49,6 +48,7 @@ public class MaFrame extends JFrame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setUndecorated(true);
 		setLocation(500, 200);
+		//Pour arrondir les bords
 		setShape(new RoundRectangle2D.Float(0,0,449,799,75,75));
 
 		   //On définit le layout

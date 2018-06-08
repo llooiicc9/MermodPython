@@ -172,13 +172,10 @@ public class panelContact extends JPanel
 	}
 	public void afficheContact() {
 
-		
-		
 		center.removeAll();
 		deSerializeObject();
 		for (int i = 0; i < contacts.size(); i++) {
 		System.out.println(contacts.get(i).getNom());
-			
 		}
 	
 		for(int i=0; i<contacts.size();i++) {

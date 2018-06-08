@@ -53,8 +53,6 @@ public class panelHaut extends JPanel {
 		add(lblHeure);
 		add(a, BorderLayout.EAST);
 		
-	
-		
 	}
 
 	class CurrentTime implements ActionListener
