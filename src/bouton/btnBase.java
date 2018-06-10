@@ -45,6 +45,10 @@ public class btnBase extends JButton
 		setOpaque(false);
 		setContentAreaFilled(false);
 	}
+	public void setcheminImage(String chemin) {
+		// TODO Auto-generated method stub
+		this.CheminImage=chemin;
+	}
 	
 	
 	

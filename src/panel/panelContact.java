@@ -68,6 +68,7 @@ public class panelContact extends JPanel
     private JLabel Photo = new JLabel("Photo : ");
     btnBase photo = new btnBase("images/Images.png");
     JButton a; 
+    String chemin;
     
     
   //bouton et texte affiché dans la page principale contact avec la liste des contacts
@@ -92,6 +93,7 @@ public class panelContact extends JPanel
 	JPanel north= new JPanel();
 	JPanel affiche = new JPanel();
 	JPanel center= new JPanel();
+	Font police = new Font("Arial",Font.ROMAN_BASELINE,20);
 	
 	public panelContact() {
 		
@@ -118,20 +120,32 @@ public class panelContact extends JPanel
 					   
 					    north.removeAll();
 					    pane.add(Nom);
+					    Nom.setFont(police);
 					    pane.add(nom);
+					    nom.setFont(police);
 					    pane.add(Prenom);
+					    Prenom.setFont(police);
 					    pane.add(prenom);
+					    prenom.setFont(police);
 						pane.add(Numero);
+						Numero.setFont(police);
 						pane.add(numero);
+						numero.setFont(police);
 						pane.add(Adresse);
+						Adresse.setFont(police);
 						pane.add(adresse);
+						adresse.setFont(police);
 						pane.add(Mail);
+						Mail.setFont(police);
 						pane.add(mail);
+						mail.setFont(police);
 						pane.add(Photo);
+						Photo.setFont(police);
 						pane.add(photo);
 						pane.add(ok);
 						pane.add(retour);
-					   
+						
+						 
 
 						CardLayoutContact.show(base, listContent[1]);
 						
@@ -175,13 +189,12 @@ public class panelContact extends JPanel
 		center.removeAll();
 		deSerializeObject();
 		
-	
+	    System.out.println(contacts.size());
 		for(int i=0; i<contacts.size();i++) {
 			a= new JButton();
 			a.setText(contacts.get(i).getNom()+" "+contacts.get(i).getPrenom());
 			a.setName(""+i);
 			a.setFont(new Font("Arial", Font.BOLD, 30));
-			
 			
 			if(i%2==0) {
 				a.setBackground(new Color(254, 231, 240));
@@ -189,6 +202,8 @@ public class panelContact extends JPanel
 				a.setBackground(new Color(251, 252, 250));
 			}
 			center.add(a);
+	
+		
 		
 			CardLayoutContact.show(base, listContent[0]);
 			
@@ -197,7 +212,7 @@ public class panelContact extends JPanel
 				public void actionPerformed(ActionEvent event) {
 					north.removeAll();
 					affiche.removeAll();
-					affiche.setLayout(new GridLayout(8,2));
+					affiche.setLayout(new GridLayout(9,2));
 					
 					btnBase modifier = new btnBase("images/save.png");
 					btnBase delete = new btnBase("images/delete.png");
@@ -206,8 +221,30 @@ public class panelContact extends JPanel
 					
 					
 					
-					btnBase photoProfil = new btnBase(contacts.get(getID()).getcheminImage());
+				    btnBase photoProfil = new btnBase(contacts.get(getID()).getcheminImage());
 					System.out.println(getID());
+					
+					
+					photoProfil.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent event) {
+							
+							gallerie.nomContact = nom.getText();
+							gallerie.afficheImage();
+							CardLayoutContact.show(base, listContent[3]);
+							
+							gallerie.btnContact.addActionListener(new ActionListener(){
+								   public void actionPerformed(ActionEvent event){	
+									   
+									   	chemin = (gallerie.getImageContact());
+								        CardLayoutContact.show(base, listContent[2]);
+								        
+								      }
+							        });
+						}
+					});
+					
+					photoProfil.setcheminImage(chemin);
+					
 					
 					affiche.add(Photo);
 					affiche.add(photoProfil);
@@ -230,6 +267,7 @@ public class panelContact extends JPanel
 					affiche.add(modifier);
 					affiche.add(delete);
 					affiche.add(retour);
+					
 					
 					CardLayoutContact.show(base, listContent[2]);
 					
@@ -276,7 +314,7 @@ public class panelContact extends JPanel
 						  modify();
 						  serializeObject();
 						  afficheContact();
-						  
+						
 						  CardLayoutContact.show(base, listContent[0]);
 						  
 						   
@@ -290,6 +328,7 @@ public class panelContact extends JPanel
 	public int getID() {
 		return Integer.parseInt(a.getName());
 	}
+	
 	public void modify() {
 		 
 		contacts.get(getID()).setNom(nom.getText());
@@ -298,6 +337,8 @@ public class panelContact extends JPanel
 		contacts.get(getID()).setTelephone(numero.getText());
 		contacts.get(getID()).setMail(mail.getText());
 		serializeObject();
+		
+		
 		
 		//contacts.get(place).setcheminImage(photoProfil.getText());
 		

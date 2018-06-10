@@ -94,7 +94,6 @@ public class panelCalculette extends JPanel {
 
     //On parcourt le tableau avec un switch pour ajouter les listener
     for(int i = 0; i < tab_string.length; i++){
-      tab_button[i].setPreferredSize(dim);
       switch(i){
         //Pour chaque élément situé à la fin du tableau
         //et qui n'est pas un chiffre
@@ -110,22 +109,18 @@ public class panelCalculette extends JPanel {
           break;
         case 13 :
           tab_button[i].addActionListener(new PlusListener());
-          tab_button[i].setPreferredSize(dim2);
           operateur.add(tab_button[i]);
           break;
         case 14 :
           tab_button[i].addActionListener(new MoinsListener());
-          tab_button[i].setPreferredSize(dim2);
           operateur.add(tab_button[i]);
           break;	
         case 15 :	
           tab_button[i].addActionListener(new MultiListener());
-          tab_button[i].setPreferredSize(dim2);
           operateur.add(tab_button[i]);
           break;
         case 16 :
           tab_button[i].addActionListener(new DivListener());
-          tab_button[i].setPreferredSize(dim2);
           operateur.add(tab_button[i]);
           break;
         default :
