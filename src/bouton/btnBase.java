@@ -1,6 +1,7 @@
 package bouton;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +24,8 @@ public class btnBase extends JButton
 		
 		//definitionBtn();
 		setBorderPainted(true);
+		setSize(100, 100);
+		setBackground(Color.white);
 		
 		
 	}

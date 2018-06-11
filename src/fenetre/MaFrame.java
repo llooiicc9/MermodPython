@@ -3,6 +3,7 @@ package fenetre;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,7 @@ import panel.panelContact;
 import panel.panelHaut;
 import panel.panelImage;
 import panel.panelMenuMilieu;
+import panel.panelSettings;
 import panel.panelUnlockMilieu;
 
 
@@ -26,7 +28,7 @@ public class MaFrame extends JFrame
 {
 	CardLayout cl = new CardLayout();
 	JPanel content = new JPanel();
-	String[] listContent = {"Lock", "Menu", "Contact", "Image","Demineur","Calculette"};
+	String[] listContent = {"Lock", "Menu", "Contact", "Image","Calculette", "Réglage"};
 	
 	private panelHaut nord = new panelHaut();
 	private panelBas sud = new panelBas();
@@ -35,6 +37,7 @@ public class MaFrame extends JFrame
 	private panelContact contacts = new panelContact();
 	private panelImage gallerieImage = new panelImage();
 	private panelCalculette calcul = new panelCalculette();
+	private panelSettings reglages = new panelSettings();
 	
 
 	public MaFrame()
@@ -54,7 +57,8 @@ public class MaFrame extends JFrame
 	    content.add(Menu, listContent[1]);
 	    content.add(contacts, listContent[2]);
 	    content.add(gallerieImage, listContent[3]);
-	    content.add(calcul,listContent[5]);
+	    content.add(calcul,listContent[4]);
+	    content.add(reglages, listContent[5]);
 	    
 	    
 		add(nord,BorderLayout.NORTH);
@@ -92,6 +96,12 @@ public class MaFrame extends JFrame
 	        });
 	   
 	   Menu.btnCalcul.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent event) {
+			   cl.show(content, listContent[4]);
+		   }
+	   });
+	   
+	   Menu.reglage.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent event) {
 			   cl.show(content, listContent[5]);
 		   }

@@ -26,7 +26,7 @@ public class panelHaut extends JPanel {
 	private JLabel lblHeure = new JLabel();
 	private DateFormat FormatHeure = new SimpleDateFormat("HH:mm");
 	private Timer timerHeure = new Timer(0, new CurrentTime());
-	private JLabel reseau = new JLabel("Swisscom 4G");
+	private JLabel reseau = new JLabel(" Swisscom 4G");
 	private JButton hp = new btnBase("images/top.png");
 	private Icon batery = new ImageIcon("images/battery.png");
 	private JLabel battery = new JLabel();

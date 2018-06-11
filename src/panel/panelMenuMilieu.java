@@ -14,6 +14,7 @@ import bouton.btnCalculette;
 import bouton.btnContact;
 import bouton.btnImage;
 import bouton.btnPizza;
+import bouton.btnSettings;
 
 public class panelMenuMilieu extends JPanel 
 {
@@ -24,6 +25,7 @@ public class panelMenuMilieu extends JPanel
 	public btnImage btnImage = new btnImage();
 	private btnBase btnEteindre = new btnBase("images/eteindre.png");
 	public btnCalculette btnCalcul = new btnCalculette();
+	public btnSettings reglage = new btnSettings();
 	
 	public panelMenuMilieu() 
 	{
@@ -33,6 +35,7 @@ public class panelMenuMilieu extends JPanel
 		milieu.add(btnImage);
 		milieu.add(btnCalcul);
 		milieu.add(btnEteindre);
+		milieu.add(reglage);
 	
 		
 		add(milieu,BorderLayout.CENTER);
