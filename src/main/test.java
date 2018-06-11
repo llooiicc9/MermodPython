@@ -1,6 +1,5 @@
 package main;
 
-import fenetre.FenetreCard;
 import fenetre.MaFrame;
 
 public class test {

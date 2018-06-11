@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import fenetre.MaFrame;
-import fenetre.MonDialog;
 
 public class btnPizza extends btnBase 
 {

@@ -9,7 +9,6 @@ import javax.swing.*;
 
 
 import fenetre.MaFrame;
-import fenetre.MonDialog;
 import main.test;
 
 public class btnContact extends btnBase 

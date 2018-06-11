@@ -95,15 +95,24 @@ public class MaFrame extends JFrame
 		      }
 	        });
 	   
+	   //Lance l'application calculette
 	   Menu.btnCalcul.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent event) {
 			   cl.show(content, listContent[4]);
 		   }
 	   });
-	   
+	 
+	   //Lance l'application reglage
 	   Menu.reglage.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent event) {
 			   cl.show(content, listContent[5]);
+		   }
+	   });
+	   //Revient au menu une fois le fond d'écran changé
+	   reglages.photo.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent event) {
+			   reglages.changeBackground();
+			   cl.show(content, listContent[1]);
 		   }
 	   });
 

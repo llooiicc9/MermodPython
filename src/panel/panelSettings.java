@@ -29,7 +29,7 @@ public class panelSettings extends JPanel {
 	Font police = new Font("Arial",Font.ROMAN_BASELINE,30);
 	JLabel fond = new JLabel("Fond d'écran");
 	JLabel modeAvion = new JLabel("Mode Avion");
-	btnBase photo = new btnBase("images/Images.png");
+	public btnBase photo = new btnBase("images/Images.png");
 	btnBase valide = new btnBase("images/turn.png");
 	JPanel pane = new JPanel();
 	panelImage gallerie = new panelImage();
@@ -51,48 +51,31 @@ public class panelSettings extends JPanel {
 		add(pane);
 		
 		
-		photo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-			
-				gallerie.afficheImage();
-				
-				//CardLayoutSettings.show(content, listContent[1]);
-				
-				
-				/*gallerie.btnContact.addActionListener(new ActionListener(){
-					   public void actionPerformed(ActionEvent event){	
-						   	photo.setText(gallerie.getImageContact());*/
-			}
-
-		
-		});
-		
 	}
-	public void addImage()
+	public void changeBackground()
 	{
+		String nomBackground = "background.jpg";
+		String chemin = "images/";
 		//Appelle un fileChooser pour rechercher une image dans windows
 		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Ajouter une image");
+		fileChooser.setDialogTitle("Changer le fond d'écran");
 		 
-		//Choisis les extensions autorisée
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG , GIF et PNG", "jpg", "gif","png");
+		//Définis l'extension autorisée
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG", "jpg");
 		fileChooser.setFileFilter(filter);
 		 
 	    int returnVal = fileChooser.showOpenDialog(null);
 
 	    if(returnVal == JFileChooser.APPROVE_OPTION) 
 	    { 
-     	    //On récupère l'heure actuel en milisec pour avoir un nom unique pour chaque photo
-    		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
     		
     		//Récupère le chemin de l'image choisie
      		Path cheminBase = Paths.get(fileChooser.getSelectedFile().getPath());
-    		Path cheminOuEnregistrer = Paths.get(chemin+"/"+timestamp.getTime()+fileChooser.getSelectedFile().getName());
+    		Path cheminOuEnregistrer = Paths.get(chemin+nomBackground);
 		   
 			try {
-				//Copie l'image sélectionner dans la gallerie du smartphone
+				//Copie l'image sélectionner en tant que fond d'écran
 				Files.copy(cheminBase, cheminOuEnregistrer, StandardCopyOption.REPLACE_EXISTING);
-				afficheImage();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}	
