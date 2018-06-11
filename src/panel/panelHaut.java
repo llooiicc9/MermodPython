@@ -31,11 +31,14 @@ public class panelHaut extends JPanel {
 	private Icon batery = new ImageIcon("images/battery.png");
 	private JLabel battery = new JLabel();
 	private JPanel a = new JPanel();
+	private JPanel b = new JPanel();
+	private JPanel c = new JPanel();
+	private JPanel d = new JPanel(new GridLayout(1,3));
 	
 	
 	public panelHaut() {
 		
-		setLayout(new GridLayout(1,3));
+		setLayout(new BorderLayout());
 		setBackground(Color.black);
 		battery.setIcon(batery);
 		a.setLayout(new BorderLayout());
@@ -49,9 +52,17 @@ public class panelHaut extends JPanel {
 		lblHeure.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));
 		reseau.setForeground(Color.WHITE);
 		reseau.setFont(new Font("Arial", Font.ROMAN_BASELINE,20));
-		add(reseau);
-		add(lblHeure);
-		add(a, BorderLayout.EAST);
+		
+		b.setBackground(Color.BLACK);
+		c.setBackground(Color.BLACK);
+		d.add(reseau);
+		d.add(lblHeure);
+		d.add(a);
+		d.setBackground(Color.BLACK);
+		
+		add(b,BorderLayout.WEST);
+		add(c,BorderLayout.EAST);
+		add(d,BorderLayout.CENTER);
 		
 	}
 

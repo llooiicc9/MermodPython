@@ -45,7 +45,7 @@ public class MaFrame extends JFrame
 		setUndecorated(true);
 		setLocation(500, 200);
 		//Pour arrondir les bords
-		setShape(new RoundRectangle2D.Float(0,0,449,799,75,75));
+		setShape(new RoundRectangle2D.Float(0,0,449,799,70,70));
 
 		   //On définit le layout
 	    content.setLayout(cl);
