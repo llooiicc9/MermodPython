@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"Apps"},{"l":"bouton"},{"l":"fenetre"},{"l":"main"},{"l":"panel"}]
