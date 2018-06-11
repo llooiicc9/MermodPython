@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Apps.Calcul;
 import bouton.btnBase;
   
 public class panelCalculette extends JPanel {
@@ -35,6 +36,7 @@ public class panelCalculette extends JPanel {
   private double chiffre1;
   private boolean clicOperateur = false, update = false;
   private String operateur = "";
+  private Calcul cal= new Calcul();
   
   public panelCalculette(){
   
@@ -228,30 +230,8 @@ public class panelCalculette extends JPanel {
 
   //Méthode permettant d'effectuer un calcul selon l'opérateur sélectionné
   private void calcul(){
-    if(operateur.equals("+")){
-      chiffre1 = chiffre1 + 
-            Double.valueOf(ecran.getText()).doubleValue();
-      ecran.setText(String.valueOf(chiffre1));
-    }
-    if(operateur.equals("-")){
-      chiffre1 = chiffre1 - 
-            Double.valueOf(ecran.getText()).doubleValue();
-      ecran.setText(String.valueOf(chiffre1));
-    }          
-    if(operateur.equals("*")){
-      chiffre1 = chiffre1 * 
-            Double.valueOf(ecran.getText()).doubleValue();
-      ecran.setText(String.valueOf(chiffre1));
-    }     
-    if(operateur.equals("/")){
-      try{
-        chiffre1 = chiffre1 / 
-              Double.valueOf(ecran.getText()).doubleValue();
-        ecran.setText(String.valueOf(chiffre1));
-      } catch(ArithmeticException e) {
-        ecran.setText("0");
-      }
-    }
+	  //Appelle la fonction calcul avec le 1er chiffre, l'opérateur et le second chiffre
+	  ecran.setText(String.valueOf(cal.operation(chiffre1, operateur, Double.valueOf(ecran.getText()).doubleValue())));
   }
 
   //Listener utilisé pour les chiffres
