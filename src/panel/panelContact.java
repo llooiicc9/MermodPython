@@ -156,6 +156,8 @@ public class panelContact extends JPanel
 			   public void actionPerformed(ActionEvent event){				
 					   
 					    north.removeAll();
+					    affiche.removeAll();
+					    
 					    pane.add(Nom);
 					    Nom.setFont(police);
 					    pane.add(nom);
@@ -189,6 +191,10 @@ public class panelContact extends JPanel
 						 * @author Yannick
 						 */
 						
+						 for( ActionListener al : photo.getActionListeners() ) {
+							  photo.removeActionListener( al );
+							  }
+						
 						photo.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent event) {
 								
@@ -201,6 +207,10 @@ public class panelContact extends JPanel
 								 * @author Yannick
 								 */
 								
+								 for( ActionListener al : gallerie.btnContact.getActionListeners() ) {
+									  gallerie.btnContact.removeActionListener( al );
+									  }
+								 
 								gallerie.btnContact.addActionListener(new ActionListener(){
 									   public void actionPerformed(ActionEvent event){	
 										   	photo.setText(gallerie.getImageContact());
@@ -368,6 +378,7 @@ public class panelContact extends JPanel
 			this.btnContact = btnContact;
 		}
 
+		
 		public void actionPerformed(ActionEvent e) 
 		{
 			gallerie.nomContact = nom.getText();
@@ -452,6 +463,10 @@ public class panelContact extends JPanel
 			  serializeObject();
 			  afficheContact();
 			
+			  for( ActionListener al : btnContact.getActionListeners() ) {
+				  btnContact.removeActionListener( al );
+				  }
+			  
 			  CardLayoutContact.show(base, listContent[0]);
 		}
 	}
