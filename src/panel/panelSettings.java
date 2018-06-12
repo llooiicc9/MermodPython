@@ -21,9 +21,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import bouton.btnBase;
 
-
-// mettre en mode avion ! 
-
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Classe : panelSettings <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Python Loic et Mermod Yannick <br/>
+ * Nom de la classe : panelSettings <br/>
+ * Extension de la classe : JPanel <br/>
+ * Description de la classe : Cette classe gère l'application panelSettings . <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
 
 public class panelSettings extends JPanel {
 
@@ -52,6 +64,12 @@ public class panelSettings extends JPanel {
 	btnBase retour = new btnBase("images/retour.png");
 	
 	JPanel base = new JPanel();
+	
+	/**
+	 * Création du constructeur panelSettings
+	 * @author Yannick
+	 */
+	
 	public panelSettings() {
 		
 		fond.setFont(police);
@@ -68,9 +86,10 @@ public class panelSettings extends JPanel {
 		
 		add(base);
 		
-		
-		
-	
+		/**
+		 * Création du Listener application
+		 * @author Yannick
+		 */
 		
 		application.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -101,6 +120,8 @@ public class panelSettings extends JPanel {
 		
 		
 	}
+	
+	
 	public void changeBackground()
 	{
 		String nomBackground = "background.jpg";
