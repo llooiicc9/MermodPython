@@ -29,7 +29,13 @@ public class Contact implements Serializable{
 	private String cheminImage;
 	
 	/**
-	 * Creation du constructeur Contact
+	 * Création du constructeur Contact
+	 * @param nom
+	 * @param prenom
+	 * @param telephone
+	 * @param adresse
+	 * @param mail
+	 * @param cheminImage
 	 * @author Yannick
 	 */
 	

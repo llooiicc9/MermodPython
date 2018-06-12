@@ -3,6 +3,7 @@ package panel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -41,13 +42,32 @@ import javax.swing.ListModel;
 import javax.swing.SpringLayout;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import Apps.Contact;
 
 import bouton.btnBase;
 import bouton.btnUnlock;
 import fenetre.MaFrame;
+import panel.panelImage.AgrandirImg;
 
+
+
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Classe : panelContact <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Mermod Yannick <br/>
+ * Nom de la classe : panelContact <br/>
+ * Extension de la classe : JPanel <br/>
+ * Description de la classe : Cette classe gère l'application des contacts. <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
 
 public class panelContact extends JPanel 
 {
@@ -68,7 +88,7 @@ public class panelContact extends JPanel
     private JLabel Photo = new JLabel("Photo : ");
     btnBase photo = new btnBase("images/Images.png");
     JButton a; 
-    String chemin;
+    public String chemin=null;
     
     
   //bouton et texte affiché dans la page principale contact avec la liste des contacts
@@ -83,6 +103,8 @@ public class panelContact extends JPanel
   	//Panel d'affichage de la liste
   	ArrayList<Contact> contacts = new ArrayList<Contact>();
   	public panelImage gallerie = new panelImage();
+  	public btnBase photoProfil;
+  	private Dimension dimension = new Dimension(450,80);
   
 
   	
@@ -94,10 +116,19 @@ public class panelContact extends JPanel
 	JPanel affiche = new JPanel();
 	JPanel center= new JPanel();
 	Font police = new Font("Arial",Font.ROMAN_BASELINE,20);
+	JPanel scrollbar = new JPanel();
+	
+	/**
+	 * Constructeur du panelContact
+	 * @author Yannick
+	 */
 	
 	public panelContact() {
 		
+		JScrollPane scroll = new JScrollPane(center, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // si on veut mettre une scrollbar
+
 		center.setLayout(new BoxLayout(center,BoxLayout.PAGE_AXIS));
+		
 		text.setFont(new Font("Arial", Font.ROMAN_BASELINE, 40));
 		setLayout(new BorderLayout());
 		north.add(text);
@@ -106,7 +137,8 @@ public class panelContact extends JPanel
 		
 		base.setLayout(CardLayoutContact);
 		setBackground(Color.WHITE);
-		base.add(center, listContent[0]);
+		
+		base.add(scroll, listContent[0]);
 		base.add(pane, listContent[1]);
 		base.add(affiche,listContent[2]);
 		base.add(gallerie, listContent[3]);
@@ -114,6 +146,11 @@ public class panelContact extends JPanel
 		add(base,BorderLayout.CENTER);
 		
 		afficheContact();
+		
+		/**
+		 * Création du Listener d'ajout d'un contact
+		 * @author Yannick
+		 */
 		
 		ajout.addActionListener(new ActionListener(){
 			   public void actionPerformed(ActionEvent event){				
@@ -145,9 +182,12 @@ public class panelContact extends JPanel
 						pane.add(ok);
 						pane.add(retour);
 						
-						 
-
 						CardLayoutContact.show(base, listContent[1]);
+						
+						/**
+						 * Création du Listener pour ajouter une photo à un contact 
+						 * @author Yannick
+						 */
 						
 						photo.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent event) {
@@ -155,6 +195,11 @@ public class panelContact extends JPanel
 								gallerie.nomContact = nom.getText();
 								gallerie.afficheImage();
 								CardLayoutContact.show(base, listContent[3]);
+								
+								/**
+								 * Création du Listener du bouton ajouter la photo à un contact
+								 * @author Yannick
+								 */
 								
 								gallerie.btnContact.addActionListener(new ActionListener(){
 									   public void actionPerformed(ActionEvent event){	
@@ -166,7 +211,11 @@ public class panelContact extends JPanel
 							}
 						});
 						
-						//En cliquant sur retour on revient à la page d'affichage des contacts
+						/**
+						 * Création du Listener pour le retour en arrière 
+						 * @author Yannick
+						 */
+						
 					    retour.addActionListener(new ActionListener(){
 							public void actionPerformed(ActionEvent event){				
 								
@@ -181,176 +230,309 @@ public class panelContact extends JPanel
     
 });
 		
-		
-		
 	}
+	
+	/**
+	 * Création de la méthode afficheContact()
+	 * @author Yannick
+	 */
+	
 	public void afficheContact() {
 
 		center.removeAll();
 		deSerializeObject();
-		
+
 	    System.out.println(contacts.size());
 		for(int i=0; i<contacts.size();i++) {
 			a= new JButton();
 			a.setText(contacts.get(i).getNom()+" "+contacts.get(i).getPrenom());
 			a.setName(""+i);
 			a.setFont(new Font("Arial", Font.BOLD, 30));
-			
+			a.setMaximumSize(dimension);
+			a.setMinimumSize(dimension);
+			a.setPreferredSize(dimension);
 			if(i%2==0) {
-				a.setBackground(new Color(254, 231, 240));
+				//a.setBackground(new Color(210, 202, 236));
+				a.setBackground(new Color(115, 194, 251));
 			} else {
-				a.setBackground(new Color(251, 252, 250));
+				//a.setBackground(new Color(201, 160, 220));
+				a.setBackground(new Color(187, 210, 225));
 			}
 			center.add(a);
-	
 		
 		
 			CardLayoutContact.show(base, listContent[0]);
 			
-		
-			a.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent event) {
-					north.removeAll();
-					affiche.removeAll();
-					affiche.setLayout(new GridLayout(9,2));
-					
-					btnBase modifier = new btnBase("images/save.png");
-					btnBase delete = new btnBase("images/delete.png");
-					
-					
-					
-					
-					
-				    btnBase photoProfil = new btnBase(contacts.get(getID()).getcheminImage());
-					System.out.println(getID());
-					
-					
-					photoProfil.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent event) {
-							
-							gallerie.nomContact = nom.getText();
-							gallerie.afficheImage();
-							CardLayoutContact.show(base, listContent[3]);
-							
-							gallerie.btnContact.addActionListener(new ActionListener(){
-								   public void actionPerformed(ActionEvent event){	
-									   
-									   	chemin = (gallerie.getImageContact());
-								        CardLayoutContact.show(base, listContent[2]);
-								        
-								      }
-							        });
-						}
-					});
-					
-					photoProfil.setcheminImage(chemin);
-					
-					
-					affiche.add(Photo);
-					affiche.add(photoProfil);
-					affiche.add(Nom);
-					nom.setText(contacts.get(getID()).getNom());
-					affiche.add(nom);
-					affiche.add(Prenom);
-					prenom.setText(contacts.get(getID()).getPrenom());
-					affiche.add(prenom);
-					affiche.add(Numero);
-					numero.setText(contacts.get(getID()).getTelephone());
-					affiche.add(numero);
-					affiche.add(Adresse);
-					adresse.setText(contacts.get(getID()).getAdresse());
-					affiche.add(adresse);
-					affiche.add(Mail);
-					mail.setText(contacts.get(getID()).getMail());
-					affiche.add(mail);
-					
-					affiche.add(modifier);
-					affiche.add(delete);
-					affiche.add(retour);
-					
-					
-					CardLayoutContact.show(base, listContent[2]);
-					
-					
-					
-					delete.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent event) {
-							north.removeAll();
-							north.add(text);
-							north.add(ajout);
-							add(north,BorderLayout.NORTH);
-							delete();
-							
-							afficheContact();
-							CardLayoutContact.show(base, listContent[0]);
-
-						}
-					});
-					retour.addActionListener(new ActionListener(){
-						public void actionPerformed(ActionEvent event){				
-							
-							north.add(text);
-							north.add(ajout);
-							add(north,BorderLayout.NORTH);
-							
-							nom.setText("");
-							prenom.setText("");
-							numero.setText("");
-							adresse.setText("");
-							mail.setText("");
-							photo.setText("");
-							
-							CardLayoutContact.show(base, listContent[0]);
-			      }
-		        });	
-					
-				   modifier.addActionListener(new ActionListener() {
-					   public void actionPerformed(ActionEvent event) {
-						   
-						  north.add(text);
-						  north.add(ajout);
-						  add(north,BorderLayout.NORTH);
-						  
-						  modify();
-						  serializeObject();
-						  afficheContact();
-						
-						  CardLayoutContact.show(base, listContent[0]);
-						  
-						   
-					   }
-				   });
-				}
-			});
-	
+			a.addActionListener(new ClickContact(a));
+			
 	}}
 	
-	public int getID() {
-		return Integer.parseInt(a.getName());
+	/**
+	 * Création du Listener ClickContact
+	 * @author Yannick
+	 */
+	
+	class ClickContact implements ActionListener
+	{
+		private JButton btnContact;
+
+		
+		public ClickContact(JButton btnContact) 
+		{
+			this.btnContact = btnContact;
+		}
+
+		public void actionPerformed(ActionEvent e) 
+		{
+			afficherUnContact(btnContact);
+			
+		}
 	}
 	
-	public void modify() {
+	/**
+	 * Création de la méthode afficherUnContact
+	 * @author Yannick
+	 */
+	
+	private void afficherUnContact(JButton btnContacte)
+	{
+		north.removeAll();
+		affiche.removeAll();
+		affiche.setLayout(new GridLayout(9,2));
+		
+		btnBase modifier = new btnBase("images/save.png");
+		btnBase delete = new btnBase("images/delete.png");
+		
+		if (chemin!=null) {
+			
+			chemin=null;
+		}
+		else
+		{	photoProfil = new btnBase(contacts.get(getID(btnContacte)).getcheminImage());
+			
+		}
+		System.out.println(getID(btnContacte));
+		
+			  for( ActionListener al : photoProfil.getActionListeners() ) {
+			    photoProfil.removeActionListener( al );
+			  }
+			
+	  /**
+	   * Création du Listener de changement de photo de profil
+	   * @author Yannick
+	   */
+			  
+	    photoProfil.addActionListener(new modifiePhoto(btnContacte));		
+		
+		affiche.add(Photo);
+		affiche.add(photoProfil);
+		affiche.add(Nom);
+		nom.setText(contacts.get(getID(btnContacte)).getNom());
+		affiche.add(nom);
+		affiche.add(Prenom);
+		prenom.setText(contacts.get(getID(btnContacte)).getPrenom());
+		affiche.add(prenom);
+		affiche.add(Numero);
+		numero.setText(contacts.get(getID(btnContacte)).getTelephone());
+		affiche.add(numero);
+		affiche.add(Adresse);
+		adresse.setText(contacts.get(getID(btnContacte)).getAdresse());
+		affiche.add(adresse);
+		affiche.add(Mail);
+		mail.setText(contacts.get(getID(btnContacte)).getMail());
+		affiche.add(mail);
+		
+		affiche.add(modifier);
+		affiche.add(delete);
+		affiche.add(retour);
+		
+		
+		CardLayoutContact.show(base, listContent[2]);
+		
+		delete.addActionListener(new delContact(btnContacte));
+		modifier.addActionListener(new modifierContact(btnContacte));
+		retour.addActionListener(new retourContact(btnContacte));
+	}
+
+	/**
+	 * Création du Listener qui modifie la photo de profil
+	 * @author Yannick
+	 */
+	
+	class modifiePhoto implements ActionListener
+	{
+		private JButton btnContact;
+
+		public modifiePhoto(JButton btnContact) 
+		{
+			this.btnContact = btnContact;
+		}
+
+		public void actionPerformed(ActionEvent e) 
+		{
+			gallerie.nomContact = nom.getText();
+			gallerie.afficheImage();
+			CardLayoutContact.show(base, listContent[3]);
+			
+			  for( ActionListener al : gallerie.btnContact.getActionListeners() ) {
+				  gallerie.btnContact.removeActionListener( al );
+				  }
+				
+			  /**
+				 * Création du Listener qui retourne l'image au contact après son changement de photo
+				 * @author Yannick
+				 */
+			  
+			gallerie.btnContact.addActionListener(new ActionListener(){
+				   public void actionPerformed(ActionEvent event){	
+					   
+					   	chemin = (gallerie.getImageContact());
+					   
+					   	photoProfil.remove(photoProfil);
+					   	photoProfil = new btnBase(chemin);
+						
+						afficherUnContact(btnContact);
+				      }
+			});
+		}
+	}
+	
+	/**
+	 * Création du Listener de retour
+	 * @author Yannick
+	 */
+	
+	class retourContact implements ActionListener
+	{
+		private JButton btnContact;
+
+		public retourContact(JButton btnContact) 
+		{
+			this.btnContact = btnContact;
+		}
+
+		public void actionPerformed(ActionEvent e) 
+		{
+		 	north.add(text);
+			north.add(ajout);
+			add(north,BorderLayout.NORTH);
+			
+			nom.setText("");
+			prenom.setText("");
+			numero.setText("");
+			adresse.setText("");
+			mail.setText("");
+			photo.setText("");
+			
+			CardLayoutContact.show(base, listContent[0]);
+		}
+	}
+	
+	/**
+	 * Création du Listener de modification d'un contact
+	 * @author Yannick
+	 */
+	
+	class modifierContact implements ActionListener
+	{
+		private JButton btnContact;
+
+		public modifierContact(JButton btnContact) 
+		{
+			this.btnContact = btnContact;
+		}
+
+		public void actionPerformed(ActionEvent e) 
+		{
+			  north.add(text);
+			  north.add(ajout);
+			  add(north,BorderLayout.NORTH);
+			  
+			  modify(btnContact);
+			  serializeObject();
+			  afficheContact();
+			
+			  CardLayoutContact.show(base, listContent[0]);
+		}
+	}
+	
+	/**
+	 * Création du Listener de suppression d'un contact
+	 * @author Yannick
+	 */
+	
+	class delContact implements ActionListener
+	{
+		private JButton btnContact;
+		
+		public delContact(JButton btnContact) 
+		{
+			this.btnContact = btnContact;
+		}
+		
+		public void actionPerformed(ActionEvent e) 
+		{
+			north.removeAll();
+			north.add(text);
+			north.add(ajout);
+			add(north,BorderLayout.NORTH);
+			delete(btnContact);
+			
+			afficheContact();
+			CardLayoutContact.show(base, listContent[0]);
+		}
+	}
+	
+	/**
+	 * Création de la méthode getID qui retourne l'id du bouton contact
+	 * @author Yannick
+	 */
+
+	public int getID( JButton contact) {
+		return Integer.parseInt(contact.getName());
+	}
+	
+	/**
+	 * Création de la méthode modify
+	 * @author Yannick
+	 */
+	
+	public void modify(JButton contact) {
 		 
-		contacts.get(getID()).setNom(nom.getText());
-		contacts.get(getID()).setPrenom(prenom.getText());
-		contacts.get(getID()).setAdresse(adresse.getText());
-		contacts.get(getID()).setTelephone(numero.getText());
-		contacts.get(getID()).setMail(mail.getText());
+		contacts.get(getID(contact)).setNom(nom.getText());
+		contacts.get(getID(contact)).setPrenom(prenom.getText());
+		contacts.get(getID(contact)).setAdresse(adresse.getText());
+		contacts.get(getID(contact)).setTelephone(numero.getText());
+		contacts.get(getID(contact)).setMail(mail.getText());
+		contacts.get(getID(contact)).setcheminImage(photoProfil.CheminImage);
 		serializeObject();
 		
-		
-		
-		//contacts.get(place).setcheminImage(photoProfil.getText());
+		nom.setText("");
+		prenom.setText("");
+		numero.setText("");
+		adresse.setText("");
+		mail.setText("");
+		photo.setText("");
 		
 	}
-	public void delete() {
+	
+	/**
+	 * Création de la méthode delete 
+	 * @author Yannick
+	 */
+	
+	public void delete(JButton contact) {
 		
-		contacts.remove(getID());
+		contacts.remove(getID(contact));
 		serializeObject();
 		
 	}
 
-	//Enregistre les contacts créés
+	   /**
+	    * Création de la méthode serilaizeObject qui écrit dans un fichier
+	    * @author Yannick
+	    */
+	
 		public void serializeObject() 
 		{
 			try 
@@ -367,7 +549,12 @@ public class panelContact extends JPanel
 				e.printStackTrace();
 			}
 		}
-		// Lis les contacts 
+		
+		/**
+		 * Création de la méthode deSerializeObject qui permet de lire dans le fichier
+		 * @author Yannick
+		 */
+		
 		public void deSerializeObject() 
 		{
 			try 
@@ -386,10 +573,14 @@ public class panelContact extends JPanel
 			catch (ClassNotFoundException e) 
 			{
 				e.printStackTrace();
-				
-
 			}
 		}
+		
+		/**
+		 * Création de la classe buttonOk qui valide la création d'un contact 
+		 * @author Yannick
+		 */
+		
 class buttonok extends JButton implements ActionListener {
     
   panelContact pc;
@@ -422,13 +613,16 @@ class buttonok extends JButton implements ActionListener {
 		mail.setText("");
 		photo.setText("");
 	
-		//	
 	}
 	}
 
+	/**
+	 * Création de la méthode setLienImage
+	 * @author Yannick
+	 */
+
 	public void setLienImage(String lienImage) {
 		this.lienImage = lienImage;
-		
 	}
 }
 	
