@@ -121,7 +121,10 @@ public class panelSettings extends JPanel {
 		
 	}
 	
-	
+	/**
+	 * Permet de changer le fond d'écran du smartphone
+	 * @author Loïc
+	 */
 	public void changeBackground()
 	{
 		String nomBackground = "background.jpg";

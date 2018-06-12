@@ -32,6 +32,10 @@ public class panelBas extends JPanel {
 	
 	public JButton btnHome = new btnBase("images/Home.png");
 	
+	/**
+	 * Constructeur panelBas
+	 * @author Loïc
+	 */
 	public panelBas() {
 		
 		add(btnHome);

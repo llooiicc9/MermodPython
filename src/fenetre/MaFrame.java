@@ -65,7 +65,7 @@ public class MaFrame extends JFrame
 		//Pour arrondir les bords
 		setShape(new RoundRectangle2D.Float(0,0,449,799,70,70));
 
-		   //On définit le layout
+		//On définit le layout
 	    content.setLayout(cl);
 	    //Permet de changer de panel
 	    content.add(milieu, listContent[0]);
