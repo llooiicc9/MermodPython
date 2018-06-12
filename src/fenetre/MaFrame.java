@@ -25,8 +25,8 @@ import panel.panelUnlockMilieu;
 
 /**
  * ------------------------------------------------------------------------------------------------------ <br/>
- * Auteur : Python Loïc <br/>
- * Extention de la classe : JPanel <br/>
+ * Auteur : Python Loïc et Mermod Yannick <br/>
+ * Extention de la classe : JFrame  <br/>
  * Description de la classe : Gère toutes les application et le changement de panel (application) 		  <br/>
  * ------------------------------------------------------------------------------------------------------ <br/>
  * Entrée(s) : - <br/>
@@ -55,6 +55,7 @@ public class MaFrame extends JFrame
 	 Constructeur de MaFrame
 	 * @author Loïc
 	 */
+	
 	public MaFrame()
 	{
 		
@@ -83,7 +84,11 @@ public class MaFrame extends JFrame
 	    getContentPane().add(content, BorderLayout.CENTER);
 	    setVisible(true);
  
-	   //Lance l'application contacts
+	    /**
+		 * Création du Listener du bouton contact
+		 * @author Yannick
+		 */
+	    
 	   Menu.btnContacts.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
 			   
@@ -92,7 +97,11 @@ public class MaFrame extends JFrame
 		      }
 	        });
 	   
-	   //Lance l'application image
+	   /**
+		 * Création du Listener du bouton Image
+		 * @author Yannick
+		 */
+	   
 	   Menu.btnImage.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
 			   
@@ -101,7 +110,11 @@ public class MaFrame extends JFrame
 		      }
 	        });
 	   
-	   //Retour au menu
+	   /**
+		 * Création du Listener du bouton Home 
+		 * @author Yannick
+		 */
+	   
 	   sud.btnHome.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){				
 			   
@@ -109,20 +122,33 @@ public class MaFrame extends JFrame
 		      }
 	        });
 	   
-	   //Lance l'application calculette
+	   /**
+		 * Création des composants 
+		 * @author Yannick
+		 */
+	   
 	   Menu.btnCalcul.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent event) {
 			   cl.show(content, listContent[4]);
 		   }
 	   });
 	 
-	   //Lance l'application reglage
+	   /**
+		 * Création du Listener du bouton reglage
+		 * @author Yannick
+		 */
+	   
 	   Menu.reglage.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent event) {
 			   cl.show(content, listContent[5]);
 		   }
 	   });
-	   //Revient au menu une fois le fond d'écran changé
+	  
+	   /**
+		 * Création du Listener du changement de fond d'écran de l'appli réglage 
+		 * @author Yannick
+		 */
+	   
 	   reglages.photo.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent event) {
 			   reglages.changeBackground();
