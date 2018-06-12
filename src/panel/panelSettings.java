@@ -2,6 +2,7 @@ package panel;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -26,29 +27,77 @@ import bouton.btnBase;
 
 public class panelSettings extends JPanel {
 
-	Font police = new Font("Arial",Font.ROMAN_BASELINE,30);
+	Font police = new Font("Arial",Font.ROMAN_BASELINE,20);
 	JLabel fond = new JLabel("Fond d'écran");
-	JLabel modeAvion = new JLabel("Mode Avion");
+	JLabel applis = new JLabel("Infos sur les applis");
 	public btnBase photo = new btnBase("images/Images.png");
-	btnBase valide = new btnBase("images/turn.png");
+	public btnBase application = new btnBase("images/search.png");
 	JPanel pane = new JPanel();
 	panelImage gallerie = new panelImage();
 	String[] listContent = {"liste","gallerie"};
 	CardLayout CardLayoutSettings = new CardLayout();
 	JPanel content = new JPanel();
 	private boolean avion = false;
+	CardLayout reglage = new CardLayout();
+	String[] list = {"affichage","Infos"};
+	JPanel app = new JPanel();
 	
+	btnBase contact = new btnBase("images/Contacts.png");
+	JLabel a = new JLabel("590 lignes de code");
+	btnBase images = new btnBase("images/Images.png");
+	JLabel b = new JLabel("267 lignes de code");
+	btnBase calculette = new btnBase("images/calculator.png");
+	JLabel c = new JLabel("391 lignes de code");
+	
+	btnBase retour = new btnBase("images/retour.png");
+	
+	JPanel base = new JPanel();
 	public panelSettings() {
 		
 		fond.setFont(police);
-		modeAvion.setFont(police);
+		applis.setFont(police);
 		pane.setLayout(new GridLayout(2,2));
 		pane.add(fond);
 		pane.add(photo);
-		pane.add(modeAvion);
-		pane.add(valide);
+		pane.add(applis);
+		pane.add(application);
 		
-		add(pane);
+		base.setLayout(reglage);
+		base.add(pane, list[0]);
+		base.add(app,list[1]);
+		
+		add(base);
+		
+		
+		
+	
+		
+		application.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				
+				app.setLayout(new GridLayout(4,2));
+				app.add(contact);
+				a.setFont(police);
+				app.add(a);
+				app.add(images);
+				app.add(b);
+				b.setFont(police);
+				app.add(calculette);
+				c.setFont(police);
+				app.add(c);
+				app.add(retour);
+				
+				reglage.show(base, list[1]);
+				
+				
+				retour.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){				
+						
+						reglage.show(base, list[0]);
+		      }
+	        });	
+			}
+		});
 		
 		
 	}
@@ -63,6 +112,7 @@ public class panelSettings extends JPanel {
 		//Définis l'extension autorisée
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG", "jpg");
 		fileChooser.setFileFilter(filter);
+	
 		 
 	    int returnVal = fileChooser.showOpenDialog(null);
 
