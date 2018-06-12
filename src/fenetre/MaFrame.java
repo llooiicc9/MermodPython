@@ -61,7 +61,7 @@ public class MaFrame extends JFrame
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setUndecorated(true);
-		setLocation(500, 200);
+		setLocation(500, 10);
 		//Pour arrondir les bords
 		setShape(new RoundRectangle2D.Float(0,0,449,799,70,70));
 
