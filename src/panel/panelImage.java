@@ -97,6 +97,7 @@ public class panelImage extends JPanel
 		add(btnAdd, BorderLayout.NORTH);
 		add(panelContent, BorderLayout.CENTER);
 		
+		//Ajoute une nouvelle image quand on clique sur le bouton ajouter
 		btnAdd.addActionListener(new ActionListener(){
 		   public void actionPerformed(ActionEvent event){						   
 		        addImage();
@@ -105,6 +106,7 @@ public class panelImage extends JPanel
 		      }
 	        });
 		
+		//Supprimer l'image choisie au clique du bouton delete
 		btnDelete.addActionListener(new ActionListener(){
 			   public void actionPerformed(ActionEvent event){						   
 			        delImage();
@@ -113,7 +115,7 @@ public class panelImage extends JPanel
 			      }
 		        });
 
-		
+		//Reviens à la gallerie d'image quand on clique sur le bouton retour
 		btnRetour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){				
 				afficheImage();
@@ -135,6 +137,7 @@ public class panelImage extends JPanel
 
 		File dossiertest= new File(chemin);		
 		
+		//Controle si le dossier choisit est bien un dossier et non un fichier
 		if(dossiertest.isDirectory())
 		{
 			
@@ -151,7 +154,7 @@ public class panelImage extends JPanel
 				imageGallerie.addActionListener(new AgrandirImg(imageGallerie));
 				gridPanelGallerie.add(imageGallerie);
 				
-				//Chaque 3 image ont augemente la taille de la gallerie
+				//Chaque 3 images ont augemente la taille de la gallerie
 				if (i%3==0) {
 					tailleVerticaleGallerie+=140;
 					gridPanelGallerie.setPreferredSize(new Dimension(400, tailleVerticaleGallerie));
@@ -204,6 +207,7 @@ public class panelImage extends JPanel
 	 */
 	public void delImage()
 	{
+		//Supprimer l'image sélectionner
 		File monFichier = new File(ImgDel);
 		monFichier.delete();
 	}

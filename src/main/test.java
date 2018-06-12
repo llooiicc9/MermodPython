@@ -7,7 +7,6 @@ public class test {
 	public static void main(String[] args) {
 		MaFrame testFrame = new MaFrame();
 		
-		//FenetreCard testCard = new FenetreCard();
 	}
 
 }

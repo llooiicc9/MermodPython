@@ -13,9 +13,20 @@ import bouton.btnBase;
 import bouton.btnCalculette;
 import bouton.btnContact;
 import bouton.btnImage;
-import bouton.btnPizza;
 import bouton.btnSettings;
 
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Python Loïc - Mermod Yannick <br/>
+ * Extention de la classe : JPanel <br/>
+ * Description de la classe : Ce panel gère la redirection entre les différentes applications. <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
 public class panelMenuMilieu extends JPanel 
 {
 	private panelBase haut = new panelBase();
@@ -31,6 +42,7 @@ public class panelMenuMilieu extends JPanel
 	{
 		setLayout(new BorderLayout());
 		
+		//Ajoute les différents applications au menu principal
 		milieu.add(btnContacts);		
 		milieu.add(btnImage);
 		milieu.add(btnCalcul);
@@ -58,6 +70,11 @@ public class panelMenuMilieu extends JPanel
 		
 	}
 	
+	/**
+	 Fonction pour afficher un fond d'écran 
+	 * @author Loïc
+	 *
+	 */
 	public void paintComponent(Graphics g)
     {
 		try 

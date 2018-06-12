@@ -13,9 +13,17 @@ package Apps;
  */
 public class Calcul {
 	
-	public Calcul() {
+	public Calcul() 
+	{
+		
 	}
 	
+	/**
+	 * Gère les calculs
+	 * @author Yannick / Loïc
+	 * @param chiffre1, opérateur et chiffre 2
+	 * @return résultats en double
+	 */
 	public double operation ( double chiffre1, String operateur, double chiffre2)
 	{
 		
@@ -32,6 +40,7 @@ public class Calcul {
 		case "/":
 			try{
 		        chiffre1 = chiffre1 / chiffre2;
+		        //En cas de division par 0 
 		      } catch(ArithmeticException e) {
 		    	  return 0;
 		      }
