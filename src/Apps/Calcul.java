@@ -2,7 +2,7 @@ package Apps;
 
 /**
  * ------------------------------------------------------------------------------------------------------ <br/>
- * Auteur : Mermod Yannick / Python Loïc<br/>
+ * Auteur : Python Loïc<br/>
  * Description de la classe : Fonction calcul pour la calculette et le Junit. <br/>
  * ------------------------------------------------------------------------------------------------------ <br/>
  * Entrée(s) : - <br/>
@@ -20,7 +20,7 @@ public class Calcul {
 	
 	/**
 	 * Gère les calculs
-	 * @author Yannick / Loïc
+	 * @author Loïc
 	 * @param chiffre1, opérateur et chiffre 2
 	 * @return résultats en double
 	 */

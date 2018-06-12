@@ -37,7 +37,11 @@ public class panelMenuMilieu extends JPanel
 	private btnBase btnEteindre = new btnBase("images/eteindre.png");
 	public btnCalculette btnCalcul = new btnCalculette();
 	public btnSettings reglage = new btnSettings();
-	
+
+	/**
+	 Constructeur de panelMenuMilieu
+	 * @author Loïc
+	 */
 	public panelMenuMilieu() 
 	{
 		setLayout(new BorderLayout());

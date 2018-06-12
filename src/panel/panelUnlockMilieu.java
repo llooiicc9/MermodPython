@@ -25,7 +25,18 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import bouton.btnUnlock;
-
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Python Loïc - Mermod Yannick <br/>
+ * Extention de la classe : JPanel <br/>
+ * Description de la classe : Panel de base quand le smartphone est Lock <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
 public class panelUnlockMilieu extends JPanel 
 {
 	public btnUnlock btnunlock= new btnUnlock();
@@ -37,29 +48,37 @@ public class panelUnlockMilieu extends JPanel
 	private DateFormat FormatDate = new SimpleDateFormat("EEEE dd MMM");
 	private Timer timerDate = new Timer(0, new CurrentDate());
 	
+	/**
+	 Constructeur de panelUnlockMilieu
+	 * @author Loïc
+	 */
 	public panelUnlockMilieu() 
 	{	
-				
+		//Rend opaque les panel du haut et du bas		
 		bas.setOpaque(false);
 		haut.setOpaque(false);
 
+		//Lance le le timer
 		timerDate.start();
 		date.setHorizontalAlignment(JLabel.CENTER);
 		date.setForeground(Color.WHITE);
 		date.setFont(new Font("Arial", Font.ROMAN_BASELINE, 50));
 		
-		//Bouton
 		setLayout(new BorderLayout());
 		add(bas);
 		bas.setLayout(new BorderLayout());
 		btnunlock.setBorder(new EmptyBorder(0, 0, 30, 0));
 		
+		//Ajoute la date et le bouton pour dévérouiller au panel
 		add(date,BorderLayout.NORTH);
 		add(btnunlock,BorderLayout.SOUTH);	
 
 	}
 	
-	
+	/**
+	 Classe qui récupère la date
+	 * @author Loïc
+	 */
 	class CurrentDate implements ActionListener
 	{
 		@Override
@@ -70,6 +89,10 @@ public class panelUnlockMilieu extends JPanel
 		}
 	}
 	
+	/**
+	 Applique un fond d'écran au smartphone
+	 * @author Loïc
+	 */
 	public void paintComponent(Graphics g)
     {
     		try 

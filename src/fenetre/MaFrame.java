@@ -23,6 +23,18 @@ import panel.panelMenuMilieu;
 import panel.panelSettings;
 import panel.panelUnlockMilieu;
 
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Python Loïc <br/>
+ * Extention de la classe : JPanel <br/>
+ * Description de la classe : Gère toutes les application et le changement de panel (application) 		  <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
 
 public class MaFrame extends JFrame 
 {
@@ -39,10 +51,12 @@ public class MaFrame extends JFrame
 	private panelCalculette calcul = new panelCalculette();
 	private panelSettings reglages = new panelSettings();
 	
-
+	/**
+	 Constructeur de MaFrame
+	 * @author Loïc
+	 */
 	public MaFrame()
 	{
-		super("");
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setUndecorated(true);
