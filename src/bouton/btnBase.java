@@ -46,7 +46,6 @@ public class btnBase extends JButton
 	
 	public btnBase(String CheminImage)
 	{
-		super();
 		this.CheminImage = CheminImage;
 		
 		definitionBtn();
