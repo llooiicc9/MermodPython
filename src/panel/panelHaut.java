@@ -19,7 +19,21 @@ import javax.swing.Timer;
 
 import bouton.btnBase;
 
-
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Classe : panelHaut <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Mermod Yannick <br/>
+ * Nom de la classe : panelHaut <br/>
+ * Extension de la classe : JPanel <br/>
+ * Description de la classe : Cette classe gère le panel Haut du smartphone. <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
 
 public class panelHaut extends JPanel {
 	
@@ -35,6 +49,11 @@ public class panelHaut extends JPanel {
 	private JPanel c = new JPanel();
 	private JPanel d = new JPanel(new GridLayout(1,3));
 	
+	
+	/**
+	 * Création du constructeur panelHaut
+	 * @author Yannick
+	 */
 	
 	public panelHaut() {
 		
@@ -66,6 +85,11 @@ public class panelHaut extends JPanel {
 		
 	}
 
+	/**
+	 * Création du Listener CurrentTime
+	 * @author Yannick
+	 */
+	
 	class CurrentTime implements ActionListener
 	{
 		@Override

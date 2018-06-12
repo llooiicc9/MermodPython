@@ -17,6 +17,22 @@ import javax.swing.JPanel;
 
 import Apps.Calcul;
 import bouton.btnBase;
+
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Classe : panelCalculette <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Mermod Yannick <br/>
+ * Nom de la classe : panelCalculette <br/>
+ * Extension de la classe : JPanel <br/>
+ * Description de la classe : Cette classe gère l'application calculette. <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
   
 public class panelCalculette extends JPanel {
 	
@@ -29,14 +45,21 @@ public class panelCalculette extends JPanel {
   //tableau de bouton de la même taille que le nombre d'élément
   JButton[] tab_button = new JButton[tab_string.length];
   private JLabel ecran = new JLabel();
+  
   //deux dimensions différentes selon les boutons pour l'affichage
   private Dimension dim = new Dimension(50, 40);
   private Dimension dim2 = new Dimension(50, 31);
+  
   //variables qui seront utilisées lors des calculs
   private double chiffre1;
   private boolean clicOperateur = false, update = false;
   private String operateur = "";
   private Calcul cal= new Calcul();
+  
+  /**
+	 * Constructeur du panelCalculette
+	 * @author Yannick
+	 */
   
   public panelCalculette(){
   
@@ -47,6 +70,11 @@ public class panelCalculette extends JPanel {
     this.setVisible(true);
   }
       
+  /**
+	 * Création des composants 
+	 * @author Yannick
+	 */
+  
   private void initComposant(){
     //On définit la police d'écriture à utiliser pour l'affichage du résultat
     Font police = new Font("Arial", Font.BOLD, 90);
@@ -228,14 +256,21 @@ public class panelCalculette extends JPanel {
     container.add(operateur, BorderLayout.EAST);
   }
 
-  //Méthode permettant d'effectuer un calcul selon l'opérateur sélectionné
+  /**
+	 * Méthode calcul qui appelera la classe Calcul 
+	 * @author Yannick
+	 */
+  
   private void calcul(){
 	  //Appelle la fonction calcul avec le 1er chiffre, l'opérateur et le second chiffre
 	  ecran.setText(String.valueOf(cal.operation(chiffre1, operateur, Double.valueOf(ecran.getText()).doubleValue())));
   }
 
-  //Listener utilisé pour les chiffres
-  //Permet de stocker les chiffres et de les afficher
+  /**
+	 * Création du Listener des chiffres
+	 * @author Yannick
+	 */
+  
   class ChiffreListener implements ActionListener {
     public void actionPerformed(ActionEvent e){
       //On affiche le chiffre additionnel dans le label
@@ -251,7 +286,11 @@ public class panelCalculette extends JPanel {
     }
   }
 
-  //Listener affecté au bouton =
+  /**
+	 * Création du Listener pour le = 
+	 * @author Yannick
+	 */
+  
   class EgalListener implements ActionListener {
     public void actionPerformed(ActionEvent arg0){
       calcul();
@@ -260,7 +299,11 @@ public class panelCalculette extends JPanel {
     }
   }
 
-  //Listener affecté au bouton +
+  /**
+	 * Création du Listener pour le + 
+	 * @author Yannick
+	 */
+  
   class PlusListener implements ActionListener {
     public void actionPerformed(ActionEvent arg0){
       if(clicOperateur){
@@ -276,7 +319,11 @@ public class panelCalculette extends JPanel {
     }
   }
 
-  //Listener affecté au bouton -
+  /**
+	 * Création du Listener pour le -
+	 * @author Yannick
+	 */
+  
   class MoinsListener implements ActionListener {
     public void actionPerformed(ActionEvent arg0){
       if(clicOperateur){
@@ -292,7 +339,11 @@ public class panelCalculette extends JPanel {
     }
   }
 
-  //Listener affecté au bouton *
+  /**
+	 * Création du Listener pour le *
+	 * @author Yannick
+	 */
+  
   class MultiListener implements ActionListener {
     public void actionPerformed(ActionEvent arg0){
       if(clicOperateur){
@@ -308,7 +359,11 @@ public class panelCalculette extends JPanel {
     }
   }
 
-  //Listener affecté au bouton /
+  /**
+	 * Création du Listener pour le / 
+	 * @author Yannick
+	 */
+  
   class DivListener implements ActionListener {
     public void actionPerformed(ActionEvent arg0){
       if(clicOperateur){
@@ -324,7 +379,11 @@ public class panelCalculette extends JPanel {
     }
   }
 
-  //Listener affecté au bouton de remise à zéro
+  /**
+	 * Création du Listener pour le clear 
+	 * @author Yannick
+	 */
+  
   class ResetListener implements ActionListener {
     public void actionPerformed(ActionEvent arg0){
       clicOperateur = false;
