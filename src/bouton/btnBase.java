@@ -27,13 +27,18 @@ public class btnBase extends JButton
 {
 	public String CheminImage ;
 	
+	/**
+	 * Constructeur btnBase
+	 * @author Loïc
+	 */
 	public btnBase() {
 		
 		definitionBtn();
 	}
 	/**
-	 * Bouton spécial pour les contacts
+	 * Constructeur btnBase pour les contacts
 	 * @author Yannick
+	 * @param contact
 	 */
 	public btnBase(Contact contact) {
 		
@@ -44,6 +49,11 @@ public class btnBase extends JButton
 		
 	}
 	
+	/**
+	 * Constructeur btnBase
+	 * @author Loïc
+	 * @param CheminImage
+	 */
 	public btnBase(String CheminImage)
 	{
 		this.CheminImage = CheminImage;
