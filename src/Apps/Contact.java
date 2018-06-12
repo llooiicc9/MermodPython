@@ -9,9 +9,9 @@ import java.io.Serializable;
  * Auteur : Mermod Yannick <br/>
  * Nom de la classe : Contact <br/>
  * Extension de la classe : Serializable <br/>
- * Description de la classe : Cette classe gère l'application Contact . <br/>
+ * Description de la classe : Cette classe gere l'application Contact . <br/>
  * ------------------------------------------------------------------------------------------------------ <br/>
- * Entrée(s) : - <br/>
+ * Entree(s) : - <br/>
  * Sortie : - <br/>
  * ------------------------------------------------------------------------------------------------------ <br/>
  * Remarque : - <br/>
@@ -29,7 +29,7 @@ public class Contact implements Serializable{
 	private String cheminImage;
 	
 	/**
-	 * Création du constructeur Contact
+	 * Creation du constructeur Contact
 	 * @author Yannick
 	 */
 	
