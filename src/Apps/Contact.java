@@ -2,6 +2,21 @@ package Apps;
 
 import java.io.Serializable;
 
+/**
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Classe : Contact <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Auteur : Mermod Yannick <br/>
+ * Nom de la classe : Contact <br/>
+ * Extension de la classe : Serializable <br/>
+ * Description de la classe : Cette classe gère l'application Contact . <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Entrée(s) : - <br/>
+ * Sortie : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ * Remarque : - <br/>
+ * ------------------------------------------------------------------------------------------------------ <br/>
+ */
 
 
 public class Contact implements Serializable{
@@ -13,6 +28,11 @@ public class Contact implements Serializable{
 	private String mail;
 	private String cheminImage;
 	
+	/**
+	 * Création du constructeur Contact
+	 * @author Yannick
+	 */
+	
 	public Contact(String nom, String prenom, String telephone, String adresse, String mail, String cheminImage) {
 		
 		this.nom=nom;
@@ -22,6 +42,7 @@ public class Contact implements Serializable{
 		this.mail=mail;
 		this.cheminImage=cheminImage;
 	}
+	
 
 	public String getNom() {
 		return nom;
